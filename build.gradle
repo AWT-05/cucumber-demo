@@ -54,3 +54,10 @@ task executeBDDTests(type: Test) {
     // Flag to scan for classes with @Test annotation.
     scanForTestClasses = false
 }
+
+test {
+    useTestNG()
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}
