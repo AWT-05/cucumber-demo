@@ -10,8 +10,8 @@ public class CustomerSteps {
 
     private Store store;
 
-    public CustomerSteps(Store store) {
-        this.store = store;
+    public CustomerSteps(Store store){
+        this.store=store;
     }
 
     @When("she return the {string} to the store")
@@ -28,4 +28,5 @@ public class CustomerSteps {
     public void sheWillGet$Refunded(int expected) {
         assertEquals(store.customer.getRefunded(), expected);
     }
+
 }
