@@ -2,28 +2,26 @@ package org.fundacionjala.cucumber.demo.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class PropertyObtainer {
+public final class EnvironmentReader {
 
     private static final String BASE_URI = "baseUri";
     private static final String FILTER_TAGS = "filterTags";
-    private static final String JAVA_HOME = "llave";
-    private static final Logger LOGGER = LoggerFactory.getLogger(PropertiesUtils.class);
+    private static final String JAVA_HOME = "java.home";
+    private static final String COMMAND_LINE = "new.key";
+    private static final Logger LOGGER = LoggerFactory.getLogger(EnvironmentReader.class);
 
-    private static PropertyObtainer instance = new PropertyObtainer();
+    private static EnvironmentReader instance = new EnvironmentReader();
     private Properties envProperties;
 
     /**
      * Constructor for PropertiesUtils class.
      */
-    private PropertyObtainer() {
+    private EnvironmentReader() {
         try (FileInputStream fileInputStream = new FileInputStream("gradle.properties")) {
             envProperties = new Properties();
             envProperties.load(fileInputStream);
@@ -40,12 +38,12 @@ public class PropertyObtainer {
      *
      * @return the instance.
      */
-    public static PropertyObtainer getInstance() {
+    public static EnvironmentReader getInstance() {
         return instance;
     }
 
     /**
-     * Returns a String containing an specific environment property.
+     * Returns a String containing a specific environment property.
      *
      * @param env is the property name string.
      * @return the wanted property value.
@@ -70,37 +68,8 @@ public class PropertyObtainer {
         return getEnvProperty(JAVA_HOME);
     }
 
-    //    @Test
-//    public void testGetInstance() {
-//
-//    }
-
-    @Test
-    public void testFilterTags() {
-        //given
-        String expectedBaseUri = "demo";
-        //when
-        String actualBaseUri = getInstance().getFilterTags();
-        //then
-        assertEquals(actualBaseUri, expectedBaseUri);
-    }
-
-    @Test
-    public void testGetBaseUri() {
-        //given
-        String expectedBaseUri = "https://actualUri.org";
-        //when
-        String actualBaseUri = getInstance().getBaseUri();
-        //then
-        assertEquals(actualBaseUri, expectedBaseUri);
-    }
-
-    @Test
-    public void testGetJavaHome() {
-        //when
-        String actualBaseUri = getInstance().getJavaHome();
-        //then
-        assertNotNull(actualBaseUri);
+    public String getCommandLineVar() {
+        return getEnvProperty(COMMAND_LINE);
     }
 
 }
