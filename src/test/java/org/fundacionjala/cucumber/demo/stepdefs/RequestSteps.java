@@ -1,5 +1,7 @@
 package org.fundacionjala.cucumber.demo.stepdefs;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
@@ -18,6 +20,7 @@ public class RequestSteps {
     private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status code does not match actual status code.";
 
     private Response response;
+    private String endpointApp;
 
     /**
      * Sends post request to endpoint.
@@ -27,6 +30,7 @@ public class RequestSteps {
      */
     @When("I send POST request to {string} endpoint")
     public void sendPostRequest(final String endpoint, final String body) {
+        endpointApp = endpoint;
         response = given().header("Content-Type", "application/json")
                 .when().body(body).post(endpoint);
     }
@@ -39,6 +43,7 @@ public class RequestSteps {
     @Then("I validate status should be {int}")
     public void validateStatusCode(final int expectedStatusCode) {
         assertEquals(response.getStatusCode(), expectedStatusCode, STATUS_CODE_ERROR_MESSAGE);
+        //assertEquals(response.getStatusCode(), 404, STATUS_CODE_ERROR_MESSAGE);
     }
 
     /**
@@ -50,5 +55,16 @@ public class RequestSteps {
     public void validateJsonSchema(final String schemaPath) {
         File schemaFile = new File(schemaPath);
         response.then().assertThat().body(matchesJsonSchema(schemaFile));
+    }
+
+    @After("@Example")
+    public void cleanEnviroment(Scenario scenario) {
+        if (scenario.isFailed()) {
+            System.out.println("Error: scenario failed");
+        } else {
+            given().header("Content-Type", "application/json")
+                    .when().delete(endpointApp + "/1");
+            System.out.println("Environment cleaned");
+        }
     }
 }

@@ -1,3 +1,4 @@
+@Example
 Feature: Projects
 
   Scenario: Create new project
