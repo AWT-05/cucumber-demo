@@ -54,3 +54,13 @@ task executeBDDTests(type: Test) {
     // Flag to scan for classes with @Test annotation.
     scanForTestClasses = false
 }
+
+test {
+    useTestNG()
+    options {
+        jvmArgs = ['-Dnew.key=newvalue']
+    }
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}
