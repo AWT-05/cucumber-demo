@@ -11,7 +11,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Groups step definitions.
+ * Groups request step definitions.
  */
 public class RequestSteps {
 
