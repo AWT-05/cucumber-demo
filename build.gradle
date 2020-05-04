@@ -58,20 +58,11 @@ task executeBDDTests(type: Test) {
         jvmArgs = ['-Dcucumber.execution.strict=' + true]
         jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber5jvm.AllureCucumber5Jvm']
         jvmArgs = ['-Dcucumber.filter.tags=' + filterTags]
+        jvmArgs = ['-DenvironmentName=' + environmentName]
     }
     // Flag to show console output.
     testLogging.showStandardStreams = true
     // Flag to scan for classes with @Test annotation.
     scanForTestClasses = false
     finalizedBy 'allureReport'
-}
-
-test {
-    useTestNG()
-    options {
-        jvmArgs = ['-Dnew.key=newvalue']
-    }
-    testLogging {
-        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
-    }
 }
