@@ -1,5 +1,5 @@
 # cucumber-demo
-Cucumber-JVM demo project
+Cucumber-JVM API Testing Framework demo project
 
 [![Build Status](https://travis-ci.com/AWT-05/cucumber-demo.svg?branch=develop)](https://travis-ci.com/AWT-05/cucumber-demo) 
 
