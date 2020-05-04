@@ -2,7 +2,7 @@ Feature: File Controller Actions
 
   Background: Set authentication
     # Given I set authentication token using "admin"
-    Given Paolo is authenticate in Moi app
+    Given Paolo is a user authenticated in Moi app
 
   Scenario: Create a new Python File
     Given Paolo has a project created of type "Python"
@@ -14,7 +14,6 @@ Feature: File Controller Actions
     And the response contains the following data
       | name             | MainClass |
       | project.language | PYTHON_32 |
-
 
   Scenario: Create a new Java File
     Given Paolo has a project created of type "Java"
@@ -38,7 +37,6 @@ Feature: File Controller Actions
       | name             | MainClass |
       | project.language | CSHARP    |
 
-
   Scenario Outline: Get a file created
     Given Paolo has a file created of type "<Language>"
     When he sends a GET request to "/file/<ID>" to see the file
@@ -52,7 +50,6 @@ Feature: File Controller Actions
       | PYTHON_32 | MainClass | {file.id} |
       | JAVA      | MainClass | {file.id} |
       | CSHARP    | MainClass | {file.id} |
-
 
   Scenario Outline: Update file information
     Given Paolo has a file created of type "<Language>"
