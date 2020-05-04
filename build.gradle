@@ -65,3 +65,13 @@ task executeBDDTests(type: Test) {
     scanForTestClasses = false
     finalizedBy 'allureReport'
 }
+
+test {
+    useTestNG()
+    options {
+        jvmArgs = ['-Dnew.key=newvalue']
+    }
+    testLogging {
+        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+    }
+}
