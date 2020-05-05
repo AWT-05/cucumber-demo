@@ -20,7 +20,7 @@ import static org.testng.Assert.assertEquals;
 public class RequestSteps {
 
     private static final String SCHEMAS_BASE_FOLDER = "src/test/resources/schemas/";
-    private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status code does not match actual status code.";
+    private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status codeuser does not match actual status code.";
     private static final String DATA_MATCH_ERROR_MSG = "The '%s' field does not match with expected value.";
 
     private Context context;
