@@ -12,7 +12,7 @@ Feature: Project Controller
 
   Scenario: Read existing Project
     When I send a GET request to "/project/{P.projectId}"
-    Then I validate the response has status code 200
+    Then Validates the response has status code 200
     And Response body should match with "project/createJavaProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}           |

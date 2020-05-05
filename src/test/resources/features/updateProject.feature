@@ -14,7 +14,7 @@ Feature: Project Controller
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
       | Description  | Updated Project Description |
       | Project Name | Updated Project             |
-    Then I validate the response has status code 200
+    Then Validates the response has status code 200
     And Response body should match with "project/updateProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}               |
