@@ -1,0 +1,50 @@
+[
+  {
+    "name": "QA",
+    "baseUri": "http://localhost:9091/api/v1",
+    "accounts": [
+      {
+        "userName": "admin",
+        "id": "",
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "password": "",
+        "rol": "admin"
+      },
+      {
+        "userName": "normalUser",
+        "id": "",
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "password": "",
+        "rol": "user"
+      }
+    ]
+  },
+  {
+    "name": "DEV",
+    "baseUri": "http://localhost:9092/api/v1",
+    "accounts": [
+      {
+        "userName": "admin",
+        "id": "",
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "password": "",
+        "rol": "admin"
+      },
+      {
+        "userName": "normalUser",
+        "id": "",
+        "email": "",
+        "firstName": "",
+        "lastName": "",
+        "password": "",
+        "rol": "user"
+      }
+    ]
+  }
+]
