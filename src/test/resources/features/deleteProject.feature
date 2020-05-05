@@ -1,4 +1,4 @@
-@AcceptanceTest
+@acceptance
 Feature: Project Controller
 
   Background: Set authentication and create a project

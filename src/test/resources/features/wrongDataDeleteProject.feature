@@ -1,4 +1,4 @@
-@NegativeTest
+@negative
 Feature: Project Controller
 
 Feature: Project Controller

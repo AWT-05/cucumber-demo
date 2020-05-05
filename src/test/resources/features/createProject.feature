@@ -1,9 +1,10 @@
-@AcceptanceTest
+@acceptance
 Feature: Project Controller
 
   Background: Set authentication
     Given I set authentication token using "normalUser" account
 
+  @deleteProject
   Scenario: Create a new csharp Project
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Description  | New csharp Project Description |
@@ -26,6 +27,7 @@ Feature: Project Controller
       | user.userId    | {normalUser.id}                |
       | user.userName  | {normalUser.userName}          |
 
+  @deleteProject
   Scenario: Create a new java Project
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Description  | New java Project Description |
@@ -48,6 +50,7 @@ Feature: Project Controller
       | user.userId    | {normalUser.id}              |
       | user.userName  | {normalUser.userName}        |
 
+  @deleteProject
   Scenario: Create a new python Project
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Description  | New python Project Description |

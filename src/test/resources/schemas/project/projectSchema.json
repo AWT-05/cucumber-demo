@@ -64,11 +64,10 @@
     },
     "description": {
       "type": "string",
-      "default": ""
+      "default": null
     },
     "path": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     }
   }
 }

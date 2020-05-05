@@ -1,6 +1,7 @@
 @AcceptanceTest
 Feature: Project Controller
 
+  @deleteProject
   Background: Set authentication and create a project
     Given I set authentication token using "normalUser" account
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
