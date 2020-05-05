@@ -16,7 +16,7 @@ Feature: Project Controller
       | Description  | Updated Project Description |
       | Project Name | Updated Project             |
     Then I validate the response has status code 200
-    And I validate the response body should match with "project/updateProjectSchema.json" JSON schema
+    And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}               |
       | description    | Updated Project Description |

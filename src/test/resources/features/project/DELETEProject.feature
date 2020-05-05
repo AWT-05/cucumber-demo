@@ -13,4 +13,3 @@ Feature: Project Controller
   Scenario: Delete existing Project
     When I send a DELETE request to "/project/delete/{P.projectId}"
     Then I validate the response has status code 200
-    And I validate the response does not contain data

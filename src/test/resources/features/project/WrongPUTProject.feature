@@ -1,6 +1,7 @@
 @negative
 Feature: Project Controller
 
+  @deleteProject
   Background: Set authentication and create a project
     Given I set authentication token using "normalUser" account
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
@@ -15,7 +16,7 @@ Feature: Project Controller
       | ProjectName | Updated Project |
     And I save response as "P"
     Then I validate the response has status code 400
-    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -28,7 +29,7 @@ Feature: Project Controller
       | Project Name | Updated Project |
     And I save response as "P"
     Then I validate the response has status code 405
-    And I validate the response body should match with "project/methodNotAllowedCreateProjectSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp}      |
       | status    | 405                |

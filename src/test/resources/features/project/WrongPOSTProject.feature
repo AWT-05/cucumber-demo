@@ -10,7 +10,7 @@ Feature: Project Controller
       | ProjectName | New Project |
     And I save response as "P"
     Then I validate the response has status code 400
-    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -23,7 +23,7 @@ Feature: Project Controller
       | Language | csharp |
     And I save response as "P"
     Then I validate the response has status code 400
-    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -37,7 +37,7 @@ Feature: Project Controller
       | Project Name | New Project |
     And I save response as "P"
     Then I validate the response has status code 400
-    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -50,7 +50,7 @@ Feature: Project Controller
       | Project Name | New Project |
     And I save response as "P"
     Then I validate the response has status code 400
-    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -64,7 +64,7 @@ Feature: Project Controller
       | Project Name | New Project |
     And I save response as "P"
     Then I validate the response has status code 404
-    And I validate the response body should match with "project/notFoundSchema.json" JSON schema
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 404           |
