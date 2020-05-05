@@ -14,8 +14,8 @@ Feature: Project Controller
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
       | ProjectName | Updated Project |
     And I save response as "P"
-    Then Validates the response has status code 400
-    And Response body should match with "project/badRequestSchema.json" JSON schema
+    Then I validate the response has status code 400
+    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -27,8 +27,8 @@ Feature: Project Controller
     When I send a PUT request to "/project/info" with the following parameters
       | Project Name | Updated Project |
     And I save response as "P"
-    Then Validates the response has status code 405
-    And Response body should match with "project/methodNotAllowedCreateProjectSchema.json" JSON schema
+    Then I validate the response has status code 405
+    And I validate the response body should match with "project/methodNotAllowedCreateProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp}      |
       | status    | 405                |

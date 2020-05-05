@@ -10,12 +10,12 @@ Feature: Project Controller
       | Language     | python                  |
       | Project Name | New Project             |
     And I save response as "P"
-    Then Validates the response has status code 200
+    Then I validate the response has status code 200
 
   Scenario: Delete Project without project id
     When I send a DELETE request to "/project/delete"
-    Then Validates the response has status code 405
-    And Response body should match with "project/methodNotAllowedCreateProjectSchema.json" JSON schema
+    Then I validate the response has status code 405
+    And I validate the response body should match with "project/methodNotAllowedCreateProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp}      |
       | status    | 405                |

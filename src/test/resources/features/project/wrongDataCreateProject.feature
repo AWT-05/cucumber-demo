@@ -9,8 +9,8 @@ Feature: Project Controller
       | Language    | csharp      |
       | ProjectName | New Project |
     And I save response as "P"
-    Then Validates the response has status code 400
-    And Response body should match with "project/badRequestSchema.json" JSON schema
+    Then I validate the response has status code 400
+    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -22,8 +22,8 @@ Feature: Project Controller
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Language | csharp |
     And I save response as "P"
-    Then Validates the response has status code 400
-    And Response body should match with "project/badRequestSchema.json" JSON schema
+    Then I validate the response has status code 400
+    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -36,8 +36,8 @@ Feature: Project Controller
       | Languag      | csharp      |
       | Project Name | New Project |
     And I save response as "P"
-    Then Validates the response has status code 400
-    And Response body should match with "project/badRequestSchema.json" JSON schema
+    Then I validate the response has status code 400
+    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -49,8 +49,8 @@ Feature: Project Controller
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Project Name | New Project |
     And I save response as "P"
-    Then Validates the response has status code 400
-    And Response body should match with "project/badRequestSchema.json" JSON schema
+    Then I validate the response has status code 400
+    And I validate the response body should match with "project/badRequestSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 400           |
@@ -63,8 +63,8 @@ Feature: Project Controller
       | Language     | java        |
       | Project Name | New Project |
     And I save response as "P"
-    Then Validates the response has status code 404
-    And Response body should match with "project/notFoundSchema.json" JSON schema
+    Then I validate the response has status code 404
+    And I validate the response body should match with "project/notFoundSchema.json" JSON schema
     And I validate the response contains the following data
       | timestamp | {P.timestamp} |
       | status    | 404           |

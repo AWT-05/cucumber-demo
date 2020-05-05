@@ -8,7 +8,7 @@ Feature: Project Controller
       | Language     | python                  |
       | Project Name | New Project             |
     And I save response as "P"
-    Then Validates the response has status code 200
+    Then I validate the response has status code 200
 
   Scenario: Delete existing Project
     When I send a DELETE request to "/project/delete/{P.projectId}"

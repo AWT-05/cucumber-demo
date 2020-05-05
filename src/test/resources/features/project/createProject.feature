@@ -11,8 +11,8 @@ Feature: Project Controller
       | Language     | csharp                         |
       | Project Name | New csharp Project             |
     And I save response as "P"
-    Then Validates the response has status code 200
-    And Response body should match with "project/createProjectSchema.json" JSON schema
+    Then I validate the response has status code 200
+    And I validate the response body should match with "project/createProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}                  |
       | description    | New csharp Project Description |
@@ -34,8 +34,8 @@ Feature: Project Controller
       | Language     | java                         |
       | Project Name | New java Project             |
     And I save response as "P"
-    Then Validates the response has status code 200
-    And Response body should match with "project/createProjectSchema.json" JSON schema
+    Then I validate the response has status code 200
+    And I validate the response body should match with "project/createProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}                |
       | description    | New java Project Description |
@@ -57,8 +57,8 @@ Feature: Project Controller
       | Language     | python                         |
       | Project Name | New python Project             |
     And I save response as "P"
-    Then Validates the response has status code 200
-    And Response body should match with "project/createProjectSchema.json" JSON schema
+    Then I validate the response has status code 200
+    And I validate the response body should match with "project/createProjectSchema.json" JSON schema
     And I validate the response contains the following data
       | projectId      | {P.projectId}                  |
       | description    | New python Project Description |
