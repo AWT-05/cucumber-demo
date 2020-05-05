@@ -1,34 +1,101 @@
 package org.fundacionjala.cucumber.demo.stepdefs;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.cucumber.demo.utils.RequestSpecUtils;
 
 import java.io.File;
+import java.util.Map;
 
-import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Groups step definitions.
+ * Groups request step definitions.
  */
 public class RequestSteps {
 
+    private static final String SCHEMAS_BASE_FOLDER = "src/test/resources/schemas/";
     private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status code does not match actual status code.";
+    private static final String DATA_MATCH_ERROR_MSG = "The '%s' field does not match with expected value.";
 
+    private Context context;
     private Response response;
 
     /**
-     * Sends post request to endpoint.
+     * Initializes an instance of RequestSteps class.
      *
-     * @param endpoint service endpoint.
-     * @param body     request body content.
+     * @param context scenario context.
      */
-    @When("I send POST request to {string} endpoint")
-    public void sendPostRequest(final String endpoint, final String body) {
-        response = given().header("Content-Type", "application/json")
-                .when().body(body).post(endpoint);
+    public RequestSteps(final Context context) {
+        this.context = context;
+    }
+
+    /**
+     * Sets authentication header to base request specification.
+     *
+     * @param username account username.
+     */
+    @Given("I set authentication token using {string} account")
+    public void setAuthenticationToken(final String username) {
+        RequestSpecification reqSpec = RequestSpecUtils.build(username);
+        context.setReqSpec(reqSpec);
+    }
+
+    /**
+     * Sends GET request.
+     *
+     * @param endpoint resource endpoint.
+     */
+    @When("I send a GET request to {string}")
+    public void sendGETRequestWithParameters(final String endpoint) {
+        response = context.getReqSpec().when().get(endpoint);
+    }
+
+    /**
+     * Sends DELETE request.
+     *
+     * @param endpoint resource endpoint.
+     */
+    @When("I send a DELETE request to {string}")
+    public void sendDELETERequestWithParameters(final String endpoint) {
+        response = context.getReqSpec().when().delete(endpoint);
+    }
+
+    /**
+     * Sends POST request with parameters.
+     *
+     * @param endpoint resource endpoint.
+     * @param params   request parameters.
+     */
+    @When("I send a POST request to {string} with the following parameters")
+    public void sendPOSTRequestWithParameters(final String endpoint, final Map<String, String> params) {
+        response = context.getReqSpec().params(params).when().post(endpoint);
+    }
+
+    /**
+     * Sends PUT request with parameters.
+     *
+     * @param endpoint resource endpoint.
+     * @param params   request parameters.
+     */
+    @When("I send a PUT request to {string} with the following parameters")
+    public void sendPUTRequestWithParameters(final String endpoint, final Map<String, String> params) {
+        response = context.getReqSpec().params(params).when().put(endpoint);
+    }
+
+    /**
+     * Saves response to context.
+     *
+     * @param key key identifier.
+     */
+    @When("I save response as {string}")
+    public void saveResponseAs(final String key) {
+        context.saveResponse(key, response);
     }
 
     /**
@@ -36,7 +103,7 @@ public class RequestSteps {
      *
      * @param expectedStatusCode response status code.
      */
-    @Then("I validate status should be {int}")
+    @Then("I validate the response has status code {int}")
     public void validateStatusCode(final int expectedStatusCode) {
         assertEquals(response.getStatusCode(), expectedStatusCode, STATUS_CODE_ERROR_MESSAGE);
     }
@@ -46,9 +113,21 @@ public class RequestSteps {
      *
      * @param schemaPath json schema path.
      */
-    @Then("I validate response body should match with {string} json schema")
+    @Then("I validate the response body should match with {string} JSON schema")
     public void validateJsonSchema(final String schemaPath) {
-        File schemaFile = new File(schemaPath);
+        File schemaFile = new File(SCHEMAS_BASE_FOLDER.concat(schemaPath));
         response.then().assertThat().body(matchesJsonSchema(schemaFile));
+    }
+
+    /**
+     * Validates that response contains expected data.
+     *
+     * @param data expected data.
+     */
+    @Then("I validate the response contains the following data")
+    public void validateResponseContainsData(final Map<String, String> data) {
+        for (String key : data.keySet()) {
+            assertEquals(response.jsonPath().getString(key), data.get(key), String.format(DATA_MATCH_ERROR_MSG, key));
+        }
     }
 }
