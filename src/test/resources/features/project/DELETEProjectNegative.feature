@@ -8,8 +8,8 @@ Feature: Project Controller
     Then I validate the response has status code 405
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {P.timestamp}      |
-      | status    | 405                |
-      | error     | Method Not Allowed |
-      | message   | {P.message}        |
-      | path      | {P.path}           |
+      | timestamp | {P.timestamp} |
+      | status    | 404           |
+      | error     | Not Found     |
+      | message   | {P.message}   |
+      | path      | {P.path}      |
