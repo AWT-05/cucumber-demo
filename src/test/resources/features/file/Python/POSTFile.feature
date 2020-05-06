@@ -12,7 +12,7 @@ Feature: File Controller Actions
 #      And I save response as "P"
       And I save the "fileId" value
     Then I validate the response has status code 200
-    And I validate the response body should match with "file/fileSchema.json" JSON schema
-    And I validate the response contains the following data
-      | name             | MainClass |
-      | project.language | PYTHON_32 |
+      And I validate the response body should match with "file/fileSchema.json" JSON schema
+      And I validate the response contains the following data
+        | name             | MainClass |
+        | project.language | PYTHON_32 |
