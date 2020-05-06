@@ -10,7 +10,7 @@ Feature: Project Controller
       | Project Name | New java Project             |
       And I save response as "P"
     Then I validate the response has status code 200
-      And I validate the response body should match with "project/createJavaProjectSchema.json" JSON schema
+      And I validate the response body should match with "project/projectSchema.json" JSON schema
       And I validate the response contains the following data
         | projectId      | {P.projectId}                |
         | description    | New java Project Description |

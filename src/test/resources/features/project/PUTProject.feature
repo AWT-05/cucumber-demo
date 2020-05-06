@@ -14,7 +14,7 @@ Feature: Project Controller
   Scenario: Update existing Project
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
       | Description  | Updated Project Description |
-      | Project Name | Updated Project             |
+      | Project name | Updated Project             |
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
@@ -22,7 +22,7 @@ Feature: Project Controller
       | description    | Updated Project Description |
       | language       | PYTHON_32                   |
       | projectName    | Updated Project             |
-      | path           | {P.path}                    |
+#      | path           | {P.path}                    |
       | user.email     | {normalUser.email}          |
       | user.firstName | {normalUser.firstName}      |
       | user.lastName  | {normalUser.lastName}       |
