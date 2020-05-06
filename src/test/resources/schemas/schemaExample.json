@@ -18,7 +18,10 @@
       "type": "string"
     },
     "userId": {
-      "type": "integer"
+      "type": [
+        "integer",
+        "null"
+      ]
     }
   }
 }
