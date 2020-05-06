@@ -10,7 +10,7 @@ Feature: File Controller Actions
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
       | File Name | MainClass                |
       And I save response as "res"
-      And I save the "fileId" ID into "res"
+      And I save the "fileId" ID from "res"
     Then I validate the response has status code 200
     And I validate the response body should match with "file/fileSchema.json" JSON schema
     And I validate the response contains the following data
