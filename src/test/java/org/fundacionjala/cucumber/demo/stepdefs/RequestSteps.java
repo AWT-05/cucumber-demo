@@ -140,4 +140,13 @@ public class RequestSteps {
                     String.format(DATA_MATCH_ERROR_MSG, key));
         }
     }
+
+    /**
+     * Sets base request specification without authentication.
+     */
+    @When("I don't set authentication token")
+    public void withoutAuthenticationToken() {
+        RequestSpecification reqSpec = RequestSpecUtils.build();
+        context.setReqSpec(reqSpec);
+    }
 }

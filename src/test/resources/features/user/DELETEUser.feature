@@ -13,8 +13,3 @@ Feature: User deletion
     When I send a DELETE request to "/user/delete/9000"
     Then I validate the response has status code 400
 
-  @negativeTest
-  Scenario: Delete user without authentication
-    When I send a DELETE request to "/user/delete/3"
-      And I no longer have authentication valid
-    Then I validate the response has status code 403

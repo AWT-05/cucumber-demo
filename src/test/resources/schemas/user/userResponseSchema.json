@@ -12,74 +12,28 @@
   ],
   "properties": {
     "email": {
-      "$id": "#/properties/email",
-      "type": "string",
-      "title": "The email schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     },
     "firstName": {
-      "$id": "#/properties/firstName",
-      "type": "string",
-      "title": "The firstName schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     },
     "lastName": {
-      "$id": "#/properties/lastName",
-      "type": "string",
-      "title": "The lastName schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     },
     "password": {
-      "$id": "#/properties/password",
-      "type": "string",
-      "title": "The password schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     },
     "rol": {
-      "$id": "#/properties/rol",
-      "type": "string",
-      "title": "The rol schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     },
     "userId": {
-      "$id": "#/properties/userId",
-      "type": "integer",
-      "title": "The userId schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": 0,
-      "examples": [
-        0.0
+      "type": [
+        "integer",
+        "null"
       ]
     },
     "userName": {
-      "$id": "#/properties/userName",
-      "type": "string",
-      "title": "The userName schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "string"
-      ]
+      "type": "string"
     }
   }
 }
