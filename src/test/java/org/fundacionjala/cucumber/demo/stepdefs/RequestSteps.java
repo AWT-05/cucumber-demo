@@ -142,9 +142,14 @@ public class RequestSteps {
         }
     }
 
-    @And("I save {string} from file created")
-    public void saveId(String idKeyJson) {
-        String idValue = response.jsonPath().getString(idKeyJson);
-        context.saveIDs(idValue);
+    /**
+     * Save value of the key passed.
+     *
+     * @param jsonKey identifier to look for.
+     */
+    @And("I save the {string} value")
+    public void saveValue(String jsonKey) {
+        String value = response.jsonPath().getString(jsonKey);
+        context.saveIDs(value);
     }
 }

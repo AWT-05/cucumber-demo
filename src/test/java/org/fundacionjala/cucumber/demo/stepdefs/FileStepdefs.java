@@ -15,10 +15,22 @@ public class FileStepdefs {
     private Context context;
     private Response response;
 
+    /**
+     * Initializes an instance of FileStepdefs class.
+     *
+     * @param context scenario context.
+     */
     public FileStepdefs(Context context) {
         this.context = context;
     }
 
+    /**
+     * Helper to save a default project.
+     *
+     * @param username account username.
+     * @param language project language.
+     * @param key identifier to look for.
+     */
     @And("as {string} I have a project created of {string} type and save response as {string}")
     public void haveProjectCreated(String username, String language, String key) {
         String endpointMapped = Mapper

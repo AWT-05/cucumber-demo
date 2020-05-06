@@ -7,16 +7,22 @@ import org.fundacionjala.cucumber.demo.utils.Mapper;
 
 import static io.restassured.RestAssured.given;
 
-public class fileHooks {
+public class FileHooks {
+
     private final Context context;
     private Response response;
 
-    public fileHooks(final Context context) {
+    /**
+     * Initializes an instance of FileHooks class.
+     *
+     * @param context scenario context object.
+     */
+    public FileHooks(final Context context) {
         this.context = context;
     }
 
     /**
-     * Delete a file created.
+     * Deletes the created files.
      */
     @After("@deleteFile")
     public void buildDefaultReqSpec() {
