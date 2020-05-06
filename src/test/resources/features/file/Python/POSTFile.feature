@@ -4,7 +4,7 @@ Feature: File Controller Actions
     Given I set authentication token using "admin" account
       And as "admin" I have a project created of "python" type and save response as "res"
 
-  @deleteFile
+  @deleteFile @deleteProject
   Scenario: Create a new Python File
     When I send a POST request to "file/new/project/{res.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |

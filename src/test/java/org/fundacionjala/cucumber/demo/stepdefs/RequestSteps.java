@@ -150,6 +150,8 @@ public class RequestSteps {
     @And("I save the {string} value")
     public void saveValue(String jsonKey) {
         String value = response.jsonPath().getString(jsonKey);
+        String projectID = response.jsonPath().getString("project.projectId");
         context.saveIDs(value);
+        context.saveIDs(projectID);
     }
 }
