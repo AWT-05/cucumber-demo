@@ -1,19 +1,10 @@
 @negative
 Feature: Project Controller
 
-  @deleteProject
-  Background: Set authentication and create a project
-    Given I set authentication token using "normalUser" account
-    When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
-      | Description  | New Project Description |
-      | Language     | python                  |
-      | Project Name | New Project             |
-    And I save response as "P"
-    Then I validate the response has status code 200
-
   Scenario: Update Project with incorrect Project name parameter
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
-      | ProjectName | Updated Project |
+      | Project Name | Updated Project |
+      | Description  | Updated Project |
     And I save response as "P"
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema

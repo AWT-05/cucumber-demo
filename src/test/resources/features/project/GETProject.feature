@@ -28,3 +28,7 @@ Feature: Project Controller
       | user.rol       | {normalUser.rol}        |
       | user.userId    | {normalUser.id}         |
       | user.userName  | {normalUser.userName}   |
+
+  Scenario: Read all Projects
+    When I send a GET request to "/project"
+    Then I validate the response has status code 200

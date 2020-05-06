@@ -10,10 +10,10 @@ Feature: Project Controller
       | Description  | New csharp Project Description |
       | Language     | csharp                         |
       | Project Name | New csharp Project             |
-      And I save response as "P"
+    And I save response as "P"
     Then I validate the response has status code 200
-      And I validate the response body should match with "project/projectSchema.json" JSON schema
-      And I validate the response contains the following data
+    And I validate the response body should match with "project/projectSchema.json" JSON schema
+    And I validate the response contains the following data
       | projectId      | {P.projectId}                  |
       | description    | New csharp Project Description |
       | language       | CSHARP                         |
@@ -33,10 +33,10 @@ Feature: Project Controller
       | Description  | New java Project Description |
       | Language     | java                         |
       | Project Name | New java Project             |
-      And I save response as "P"
+    And I save response as "P"
     Then I validate the response has status code 200
-      And I validate the response body should match with "project/projectSchema.json" JSON schema
-      And I validate the response contains the following data
+    And I validate the response body should match with "project/projectSchema.json" JSON schema
+    And I validate the response contains the following data
       | projectId      | {P.projectId}                |
       | description    | New java Project Description |
       | language       | JAVA                         |
@@ -56,10 +56,10 @@ Feature: Project Controller
       | Description  | New python Project Description |
       | Language     | python                         |
       | Project Name | New python Project             |
-      And I save response as "P"
+    And I save response as "P"
     Then I validate the response has status code 200
-      And I validate the response body should match with "project/projectSchema.json" JSON schema
-      And I validate the response contains the following data
+    And I validate the response body should match with "project/projectSchema.json" JSON schema
+    And I validate the response contains the following data
       | projectId      | {P.projectId}                  |
       | description    | New python Project Description |
       | language       | PYTHON_32                      |

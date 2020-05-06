@@ -45,6 +45,20 @@ Feature: Project Controller
       | message   | {P.message}   |
       | path      | {P.path}      |
 
+  Scenario: Create a new Project with incorrect Language
+    When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
+      | Language     | pyton       |
+      | Project Name | New Project |
+    And I save response as "P"
+    Then I validate the response has status code 400
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | timestamp | {P.timestamp} |
+      | status    | 400           |
+      | error     | Bad Request   |
+      | message   | {P.message}   |
+      | path      | {P.path}      |
+
   Scenario: Create a new Project without Language
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
       | Project Name | New Project |

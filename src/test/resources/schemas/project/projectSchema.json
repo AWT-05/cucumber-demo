@@ -29,42 +29,39 @@
           "type": "integer"
         },
         "firstName": {
-          "type": "string",
-          "default": ""
+          "type": "string"
         },
         "lastName": {
-          "type": "string",
-          "default": null
+          "type": ["string",
+            "null"
+          ]
         },
         "userName": {
-          "type": "string",
-          "default": ""
+          "type": "string"
         },
         "password": {
-          "type": "string",
-          "default": ""
+          "type": "string"
         },
         "email": {
-          "type": "string",
-          "default": null
+          "type": ["string",
+            "null"
+          ]
         },
         "rol": {
-          "type": "string",
-          "default": "user"
+          "type": "string"
         }
       }
     },
     "projectName": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "language": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "description": {
-      "type": "string",
-      "default": null
+      "type": ["string",
+        "null"
+      ]
     },
     "path": {
       "type": "string"
