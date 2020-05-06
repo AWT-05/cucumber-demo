@@ -15,7 +15,7 @@ public class Context {
 
     private RequestSpecification reqSpec;
     private Map<String, Response> responses;
-    private List<String> ids;
+    private Map<String, List<String>> mapIds;
 
     /**
      * Initializes an instance of Context class.
@@ -30,7 +30,7 @@ public class Context {
     public void initializeValues() {
         reqSpec = null;
         responses = new HashMap<>();
-        ids = new ArrayList<>();
+        mapIds = new HashMap<>();
     }
 
     /**
@@ -62,21 +62,24 @@ public class Context {
     }
 
     /**
-     * Saves ids in a list .
+     * Saves ids in a map .
      *
-     * @param id      project id.
+     * @param id project id.
      */
-    public void saveIdsForDeleting(final String id) {
-        ids.add(id);
+    public void saveIds(final String key, final String id) {
+        if (!mapIds.containsKey(key)) {
+            mapIds.put(key, new ArrayList<>());
+        }
+        mapIds.get(key).add(id);
     }
 
     /**
-     * Gets saved list .
+     * Gets saved map by key .
      *
-     * @return  id      project id.
+     * @return id      project id.
      */
-    public List<String> getIdsForDeleting() {
-        return ids;
+    public List<String> getIdsByKey(final String key) {
+        return mapIds.getOrDefault(key,new ArrayList<>());
     }
 
     /**

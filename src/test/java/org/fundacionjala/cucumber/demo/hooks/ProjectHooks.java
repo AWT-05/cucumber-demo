@@ -24,11 +24,10 @@ public class ProjectHooks {
     /**
      * Delete projects.
      */
-    @After("@deleteProject")
+    @After(value = "@deleteProject", order = 20)
     public void cleanProjectsData() {
-        for (String id : context.getIdsForDeleting()) {
-            String endPointMapped = Mapper.replaceData("/project/delete/".concat(id), context.getResponses());
-            response = given(context.getReqSpec()).when().delete(endPointMapped);
+        for (String id : context.getIdsByKey("projectId")) {
+            response = given(context.getReqSpec()).when().delete("/project/delete/".concat(id));
         }
     }
 }

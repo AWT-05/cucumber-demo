@@ -145,11 +145,11 @@ public class RequestSteps {
     /**
      * Saves the id in a list.
      *
-     * @param id expected data.
+     * @param key expected data.
      */
-    @And("I save the id as {string}")
-    public void iSaveTheIdAs(final String id) {
-        String idValue = response.jsonPath().getString(id);
-        context.saveIdsForDeleting(idValue);
+    @And("I save {string} value to clean (project)(user)(file) workspace")
+    public void iSaveIdValueToCleanWorkSpace(final String key) {
+        String idValue = response.jsonPath().getString(key);
+        context.saveIds(key, idValue);
     }
 }

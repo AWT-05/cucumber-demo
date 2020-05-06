@@ -1,7 +1,6 @@
 @negative
 Feature: Project Controller
 
-
   Background: Set authentication and create a project
     Given I set authentication token using "normalUser" account
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
@@ -9,7 +8,7 @@ Feature: Project Controller
       | Language     | python                  |
       | Project Name | New Project             |
     And I save response as "P"
-    And I save the id as "projectId"
+    And I save "projectId" value to clean project workspace
     Then I validate the response has status code 200
 
   @deleteProject
@@ -17,29 +16,25 @@ Feature: Project Controller
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
       | Projectname | Updated Project |
       | Description | Updated Project |
-    And I save response as "P"
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {P.timestamp} |
-      | status    | 400           |
-      | error     | Bad Request   |
-      | message   | {P.message}   |
-      | path      | {P.path}      |
+      | status  | 400                                                     |
+      | error   | Bad Request                                             |
+      | message | Required String parameter 'Project name' is not present |
+      | path    | /api/v1/project/info/{P.projectId}                      |
 
   @deleteProject
   Scenario: Update a Project without Project id
     When I send a PUT request to "/project/info" with the following parameters
       | Project Name | Updated Project |
-    And I save response as "P"
     Then I validate the response has status code 405
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {P.timestamp}      |
-      | status    | 405                |
-      | error     | Method Not Allowed |
-      | message   | {P.message}        |
-      | path      | {P.path}           |
+      | status  | 405                                |
+      | error   | Method Not Allowed                 |
+      | message | Request method 'PUT' not supported |
+      | path    | /api/v1/project/info               |
 
   @deleteProject
   Scenario: Update Project without setting Description
@@ -48,7 +43,6 @@ Feature: Project Controller
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
-      | projectId      | {P.projectId}           |
       | description    | New Project Description |
       | language       | PYTHON_32               |
       | projectName    | Updated Project         |
@@ -65,12 +59,10 @@ Feature: Project Controller
     When I send a PUT request to "/project/info/400" with the following parameters
       | Project name | Updated Project |
       | Description  | Updated Project |
-    And I save response as "P"
     Then I validate the response has status code 404
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {P.timestamp} |
-      | status    | 404           |
-      | error     | Not Found     |
-      | message   | {P.message}   |
-      | path      | {P.path}      |
+      | status  | 404                      |
+      | error   | Not Found                |
+      | message | No value present         |
+      | path    | /api/v1/project/info/400 |

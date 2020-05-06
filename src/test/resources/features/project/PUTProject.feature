@@ -1,4 +1,4 @@
-@AcceptanceTest
+@acceptance
 Feature: Project Controller
 
   Background: Set authentication and create a project
@@ -8,7 +8,7 @@ Feature: Project Controller
       | Language     | python                  |
       | Project Name | New Project             |
     And I save response as "P"
-    And I save the id as "projectId"
+    And I save "projectId" value to clean project workspace
     Then I validate the response has status code 200
 
   @deleteProject
@@ -19,11 +19,9 @@ Feature: Project Controller
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
-      | projectId      | {P.projectId}               |
       | description    | Updated Project Description |
       | language       | PYTHON_32                   |
       | projectName    | Updated Project             |
-#      | path           | {P.path}                    |
       | user.email     | {normalUser.email}          |
       | user.firstName | {normalUser.firstName}      |
       | user.lastName  | {normalUser.lastName}       |
