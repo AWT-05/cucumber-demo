@@ -11,6 +11,7 @@ Feature: Project Controller
       | Language     | csharp                         |
       | Project Name | New csharp Project             |
     And I save response as "P"
+    And I save the id as "projectId"
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
