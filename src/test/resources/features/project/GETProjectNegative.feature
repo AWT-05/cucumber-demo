@@ -5,7 +5,7 @@ Feature: Project Controller
     Given I set authentication token using "normalUser" account
 
   Scenario: Read non existing Project
-    When I send a GET request to "/project/200"
+    When I send a GET request to "/project/400"
     And I save response as "P"
     Then I validate the response has status code 404
     And I validate the response body should match with "common/errorSchema.json" JSON schema

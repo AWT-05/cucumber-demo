@@ -17,7 +17,7 @@ Feature: Project Controller
       | path      | {P.path}           |
 
   Scenario: Delete non existing Project
-    When I send a DELETE request to "/project/delete/200"
+    When I send a DELETE request to "/project/delete/400"
     And I save response as "P"
     Then I validate the response has status code 404
     And I validate the response body should match with "common/errorSchema.json" JSON schema

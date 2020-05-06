@@ -1,7 +1,6 @@
 @AcceptanceTest
 Feature: Project Controller
 
-  #@deleteProject
   Background: Set authentication and create a project
     Given I set authentication token using "normalUser" account
     When I send a POST request to "/project/new/user/{normalUser.id}" with the following parameters
@@ -11,6 +10,7 @@ Feature: Project Controller
     And I save response as "P"
     Then I validate the response has status code 200
 
+  @deleteProject
   Scenario: Update existing Project
     When I send a PUT request to "/project/info/{P.projectId}" with the following parameters
       | Description  | Updated Project Description |
