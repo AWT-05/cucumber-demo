@@ -43,5 +43,24 @@ public class FileStepdefs {
         response = given(context.getReqSpec()).params(requestData).when().post(endpointMapped);
 
         context.saveResponse(key, response);
+        String projectId = response.jsonPath().getString("projectId");
+        context.saveIDs(projectId);
+    }
+
+    @And("I have a {string} created in response saved")
+    public void haveFileCreated(String file) {
+        String projectId = context.getIDs().remove();
+        String endpointMapped = "file/new/project/".concat(projectId);
+        Map<String, String> requestData = new HashMap<>(){{
+            put("Code", "cHl0aG9uQ29kZUJhc2U2NA==");
+            put("File Name", "MainClass");
+        }};
+        response = given(context.getReqSpec()).params(requestData).when().post(endpointMapped);
+
+        context.saveResponse(file, response);
+        String fileId = response.jsonPath().getString("fileId");
+
+        context.saveIDs(fileId);
+        context.saveIDs(projectId);
     }
 }
