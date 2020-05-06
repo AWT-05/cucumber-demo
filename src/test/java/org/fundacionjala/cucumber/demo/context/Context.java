@@ -13,6 +13,7 @@ public class Context {
 
     private RequestSpecification reqSpec;
     private Map<String, Response> responses;
+    private Map<String, Integer> ids;
 
     /**
      * Initializes an instance of Context class.
@@ -27,6 +28,7 @@ public class Context {
     public void initializeValues() {
         reqSpec = null;
         responses = new HashMap<>();
+        ids = new HashMap<>();
     }
 
     /**
@@ -64,5 +66,25 @@ public class Context {
      */
     public Map<String, Response> getResponses() {
         return responses;
+    }
+
+    /**
+     * Saves id value according to key.
+     *
+     * @param key   key identifier.
+     * @param value id value.
+     */
+    public void saveIDs(final String key, final int value) {
+        ids.put(key, value);
+    }
+
+
+    /**
+     * Gets context ids.
+     *
+     * @return context ids.
+     */
+    public Map<String, Integer> getIDs() {
+        return ids;
     }
 }
