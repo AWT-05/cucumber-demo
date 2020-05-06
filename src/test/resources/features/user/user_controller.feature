@@ -1,17 +1,17 @@
 Feature: User controller actions
 
   Background: Set authentication
-    Given I set authentication with an admin account
+    Given I set authentication token using "admin" account
 
   Scenario: Get all users
-    When I send a GET request to "/user" endpoint
-    Then I validate response code should be 200
-      And Response body should match with "user/getUsersResponseSchema.json" JSON schema
+    When I send a GET request to "/user"
+    Then I validate the response has status code 200
+      And I validate the response body should match with "user/getUsersResponseSchema.json" JSON schema
 
   Scenario: Get an specific user
     When I send a GET request to "/user/{id}"
-    Then I validate response code should be 200
-      And Response body should match with "user/userResponseSchema.json" JSON schema
+    Then I validate the response has status code 200
+      And I validate the response body should match with "user/userResponseSchema.json" JSON schema
       And I validate the response contains the following data
         | userId    | 2             |
         | firstName | Diego         |
@@ -25,8 +25,8 @@ Feature: User controller actions
     When I send a PUT request to "/user/credentials/{id}" with the following parameters
       | Password | newpass |
       | Username | dperez  |
-    Then I validate response code should be 200
-      And Response body should match with "user/userResponseSchema.json" JSON schema
+    Then I validate the response has status code 200
+      And I validate the response body should match with "user/userResponseSchema.json" JSON schema
       And I validate the response contains the following data
         | userId    | 2             |
         | firstName | Diego         |
@@ -38,4 +38,4 @@ Feature: User controller actions
 
   Scenario: Delete user
     When I send a DELETE request to "/user/delete/{id}"
-    Then I validate response code should be 200
+    Then I validate the response has status code 200
