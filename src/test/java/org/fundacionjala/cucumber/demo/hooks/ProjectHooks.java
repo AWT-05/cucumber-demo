@@ -5,9 +5,6 @@ import io.restassured.response.Response;
 import org.fundacionjala.cucumber.demo.context.Context;
 import org.fundacionjala.cucumber.demo.utils.Mapper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 public class ProjectHooks {
@@ -23,13 +20,15 @@ public class ProjectHooks {
     public ProjectHooks(final Context context) {
         this.context = context;
     }
+
+    /**
+     * Delete projects.
+     */
     @After("@deleteProject")
-    public void buildDefaultReqSpec(){
-        List<String> idsToDelete = context.getIdsForDeleting();
-        for (String ids: idsToDelete){
-            String endPointMapped = Mapper.replaceData("/project/delete/".concat(ids), context.getResponses());
+    public void cleanProjectsData() {
+        for (String id : context.getIdsForDeleting()) {
+            String endPointMapped = Mapper.replaceData("/project/delete/".concat(id), context.getResponses());
             response = given(context.getReqSpec()).when().delete(endPointMapped);
         }
-
     }
 }

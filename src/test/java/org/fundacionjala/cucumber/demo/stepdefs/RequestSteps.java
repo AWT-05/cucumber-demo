@@ -142,8 +142,13 @@ public class RequestSteps {
         }
     }
 
+    /**
+     * Saves the id in a list.
+     *
+     * @param id expected data.
+     */
     @And("I save the id as {string}")
-    public void iSaveTheIdAs(String id) {
+    public void iSaveTheIdAs(final String id) {
         String idValue = response.jsonPath().getString(id);
         context.saveIdsForDeleting(idValue);
     }

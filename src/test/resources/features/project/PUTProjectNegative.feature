@@ -9,6 +9,7 @@ Feature: Project Controller
       | Language     | python                  |
       | Project Name | New Project             |
     And I save response as "P"
+    And I save the id as "projectId"
     Then I validate the response has status code 200
 
   @deleteProject

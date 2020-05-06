@@ -35,6 +35,7 @@ Feature: Project Controller
       | Language     | java                         |
       | Project Name | New java Project             |
     And I save response as "P"
+    And I save the id as "projectId"
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
@@ -58,6 +59,7 @@ Feature: Project Controller
       | Language     | python                         |
       | Project Name | New python Project             |
     And I save response as "P"
+    And I save the id as "projectId"
     Then I validate the response has status code 200
     And I validate the response body should match with "project/projectSchema.json" JSON schema
     And I validate the response contains the following data
