@@ -6,11 +6,13 @@ import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.cucumber.demo.utils.Mapper;
 import org.fundacionjala.cucumber.demo.utils.RequestSpecUtils;
 
 import java.io.File;
 import java.util.Map;
 
+import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
 
@@ -53,7 +55,8 @@ public class RequestSteps {
      */
     @When("I send a GET request to {string}")
     public void sendGETRequestWithParameters(final String endpoint) {
-        response = context.getReqSpec().when().get(endpoint);
+        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
+        response = given(context.getReqSpec()).when().get(endpointMapped);
     }
 
     /**
@@ -63,7 +66,8 @@ public class RequestSteps {
      */
     @When("I send a DELETE request to {string}")
     public void sendDELETERequestWithParameters(final String endpoint) {
-        response = context.getReqSpec().when().delete(endpoint);
+        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
+        response = given(context.getReqSpec()).when().delete(endpointMapped);
     }
 
     /**
@@ -74,7 +78,9 @@ public class RequestSteps {
      */
     @When("I send a POST request to {string} with the following parameters")
     public void sendPOSTRequestWithParameters(final String endpoint, final Map<String, String> params) {
-        response = context.getReqSpec().params(params).when().post(endpoint);
+        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
+        Map<String, String> requestData = Mapper.replaceData(params, context.getResponses());
+        response = given(context.getReqSpec()).params(requestData).when().post(endpointMapped);
     }
 
     /**
@@ -85,7 +91,9 @@ public class RequestSteps {
      */
     @When("I send a PUT request to {string} with the following parameters")
     public void sendPUTRequestWithParameters(final String endpoint, final Map<String, String> params) {
-        response = context.getReqSpec().params(params).when().put(endpoint);
+        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
+        Map<String, String> requestData = Mapper.replaceData(params, context.getResponses());
+        response = given(context.getReqSpec()).params(requestData).when().put(endpointMapped);
     }
 
     /**
@@ -126,8 +134,10 @@ public class RequestSteps {
      */
     @Then("I validate the response contains the following data")
     public void validateResponseContainsData(final Map<String, String> data) {
+        Map<String, String> expectedData = Mapper.replaceData(data, context.getResponses());
         for (String key : data.keySet()) {
-            assertEquals(response.jsonPath().getString(key), data.get(key), String.format(DATA_MATCH_ERROR_MSG, key));
+            assertEquals(response.jsonPath().getString(key), expectedData.get(key),
+                    String.format(DATA_MATCH_ERROR_MSG, key));
         }
     }
 }

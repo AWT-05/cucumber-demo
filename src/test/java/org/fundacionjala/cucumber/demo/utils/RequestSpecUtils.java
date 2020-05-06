@@ -21,6 +21,7 @@ public final class RequestSpecUtils {
     private static final String AUTH_BODY = "{\"password\":\"%s\",\"username\":\"%s\"}";
     private static final String USER_NAME = "userName";
     private static final String PASSWORD = "password";
+    private static final String BEARER = "Bearer ";
 
     /**
      * Private constructor for RequestSpecUtils utility class.
@@ -45,8 +46,7 @@ public final class RequestSpecUtils {
                 .body(String.format(AUTH_BODY, account.get(PASSWORD), account.get(USER_NAME)))
                 .post(AUTHENTICATE_ENDPOINT);
         return new RequestSpecBuilder().setBaseUri(baseUri)
-                .setContentType(ContentType.JSON)
-                .addHeader(AUTHORIZATION_HEADER, authRes.jsonPath().getString(TOKEN_JSON_PATH)).build();
+                .addHeader(AUTHORIZATION_HEADER, BEARER.concat(authRes.jsonPath().getString(TOKEN_JSON_PATH))).build();
     }
 
     /**
@@ -56,7 +56,6 @@ public final class RequestSpecUtils {
      */
     public static RequestSpecification build() {
         String baseUri = Environment.getInstance().getBaseUri();
-        return new RequestSpecBuilder().setBaseUri(baseUri)
-                .setContentType(ContentType.JSON).build();
+        return new RequestSpecBuilder().setBaseUri(baseUri).build();
     }
 }
