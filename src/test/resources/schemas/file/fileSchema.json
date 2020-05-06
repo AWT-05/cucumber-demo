@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "required": [
+    "fileId",
+    "project",
+    "name",
+    "code"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "fileId": {
+      "$id": "#/properties/fileId",
+      "type": "integer",
+      "default": 0
+    },
+    "project": {
+      "$id": "#/properties/project",
+      "type": "object",
+      "default": {},
+      "required": [
+        "projectId",
+        "user",
+        "projectName",
+        "language",
+        "path"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "projectId": {
+          "$id": "#/properties/project/properties/projectId",
+          "type": "integer",
+          "default": 0
+        },
+        "user": {
+          "$id": "#/properties/project/properties/user",
+          "type": "object",
+          "default": {},
+          "required": [
+            "userId",
+            "firstName",
+            "lastName",
+            "userName",
+            "password",
+            "email",
+            "rol"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "userId": {
+              "$id": "#/properties/project/properties/user/properties/userId",
+              "type": "integer",
+              "default": 0
+            },
+            "firstName": {
+              "$id": "#/properties/project/properties/user/properties/firstName",
+              "type": "string",
+              "default": ""
+            },
+            "lastName": {
+              "$id": "#/properties/project/properties/user/properties/lastName",
+              "type": "string",
+              "default": ""
+            },
+            "userName": {
+              "$id": "#/properties/project/properties/user/properties/userName",
+              "type": "string",
+              "default": ""
+            },
+            "password": {
+              "$id": "#/properties/project/properties/user/properties/password",
+              "type": "string",
+              "default": ""
+            },
+            "email": {
+              "$id": "#/properties/project/properties/user/properties/email",
+              "type": "string",
+              "default": ""
+            },
+            "rol": {
+              "$id": "#/properties/project/properties/user/properties/rol",
+              "type": "string",
+              "default": ""
+            }
+          }
+        },
+        "projectName": {
+          "$id": "#/properties/project/properties/projectName",
+          "type": "string",
+          "default": ""
+        },
+        "language": {
+          "$id": "#/properties/project/properties/language",
+          "type": "string",
+          "default": ""
+        },
+        "description": {
+          "$id": "#/properties/project/properties/description",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null
+        },
+        "path": {
+          "$id": "#/properties/project/properties/path",
+          "type": "string",
+          "default": ""
+        }
+      }
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "default": ""
+    },
+    "code": {
+      "$id": "#/properties/code",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": null
+    }
+  }
+}
