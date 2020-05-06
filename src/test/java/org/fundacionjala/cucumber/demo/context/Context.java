@@ -4,7 +4,9 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Repository class to store and share data among step definitions.
@@ -13,7 +15,7 @@ public class Context {
 
     private RequestSpecification reqSpec;
     private Map<String, Response> responses;
-    private Map<String, Integer> ids;
+    private Queue<String> queueIds;
 
     /**
      * Initializes an instance of Context class.
@@ -28,7 +30,7 @@ public class Context {
     public void initializeValues() {
         reqSpec = null;
         responses = new HashMap<>();
-        ids = new HashMap<>();
+        queueIds = new LinkedList<>();
     }
 
     /**
@@ -69,13 +71,12 @@ public class Context {
     }
 
     /**
-     * Saves id value according to key.
+     * Saves id value in the context.
      *
-     * @param key   key identifier.
-     * @param value id value.
+     * @param value id.
      */
-    public void saveIDs(final String key, final int value) {
-        ids.put(key, value);
+    public void saveIDs(final String value) {
+        queueIds.add(value);
     }
 
 
@@ -84,7 +85,7 @@ public class Context {
      *
      * @return context ids.
      */
-    public Map<String, Integer> getIDs() {
-        return ids;
+    public Queue<String> getIDs() {
+        return queueIds;
     }
 }

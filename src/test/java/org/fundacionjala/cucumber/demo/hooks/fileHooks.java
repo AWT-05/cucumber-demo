@@ -20,7 +20,7 @@ public class fileHooks {
      */
     @After("@deleteFile")
     public void buildDefaultReqSpec() {
-        String idFile = context.getIDs().get("fileId").toString();
+        String idFile = context.getIDs().peek();
         String endpointMapped = Mapper.replaceData("/file/".concat(idFile), context.getResponses());
         response = given(context.getReqSpec()).when().delete(endpointMapped);
     }

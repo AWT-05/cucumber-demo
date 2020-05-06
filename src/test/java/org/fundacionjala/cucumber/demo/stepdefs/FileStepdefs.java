@@ -32,11 +32,4 @@ public class FileStepdefs {
 
         context.saveResponse(key, response);
     }
-
-    @And("I save the {string} ID from {string}")
-    public void iSaveTheIDInto(String idKey, String responseKey) {
-        response = context.getResponses().get(responseKey);
-        int idValue = Integer.parseInt(response.jsonPath().getString(idKey));
-        context.saveIDs(idKey, idValue);
-    }
 }

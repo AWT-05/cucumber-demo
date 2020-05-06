@@ -1,5 +1,6 @@
 package org.fundacionjala.cucumber.demo.stepdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -139,5 +140,11 @@ public class RequestSteps {
             assertEquals(response.jsonPath().getString(key), expectedData.get(key),
                     String.format(DATA_MATCH_ERROR_MSG, key));
         }
+    }
+
+    @And("I save {string} from file created")
+    public void saveId(String idKeyJson) {
+        String idValue = response.jsonPath().getString(idKeyJson);
+        context.saveIDs(idValue);
     }
 }

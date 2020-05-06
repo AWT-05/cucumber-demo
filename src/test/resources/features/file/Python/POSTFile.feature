@@ -9,8 +9,8 @@ Feature: File Controller Actions
     When I send a POST request to "file/new/project/{res.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
       | File Name | MainClass                |
-      And I save response as "res"
-      And I save the "fileId" ID from "res"
+#      And I save response as "P"
+      And I save "fileId" from file created
     Then I validate the response has status code 200
     And I validate the response body should match with "file/fileSchema.json" JSON schema
     And I validate the response contains the following data
