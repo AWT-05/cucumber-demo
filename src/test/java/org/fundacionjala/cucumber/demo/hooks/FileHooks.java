@@ -24,10 +24,15 @@ public class FileHooks {
     /**
      * Deletes the created files.
      */
-    @After("@deleteFile")
-    public void buildDefaultReqSpec() {
-        String idFile = context.getIDs().peek();
-        String endpointMapped = Mapper.replaceData("/file/".concat(idFile), context.getResponses());
-        response = given(context.getReqSpec()).when().delete(endpointMapped);
+    @After(value = "@deleteFile", order = 2)
+    public void deleteFile() {
+        String idFile = context.getIDs().remove();
+        response = given(context.getReqSpec()).when().delete("/file/".concat(idFile));
+    }
+
+    @After(value = "@deleteProject", order = 1)
+    public void deleteFolder() {
+        String idProject = context.getIDs().remove();
+        response = given(context.getReqSpec()).when().delete("/project/delete/".concat(idProject));
     }
 }
