@@ -1,4 +1,4 @@
-Feature: User updates
+Feature: User information
 
   Background: Set authentication
     Given I set authentication token using "admin" account

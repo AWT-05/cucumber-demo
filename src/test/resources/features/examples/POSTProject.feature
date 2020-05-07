@@ -8,19 +8,19 @@ Feature: Project Controller
       | Description  | New java Project Description |
       | Language     | java                         |
       | Project Name | New java Project             |
-      And I save response as "P"
+    And I save response as "P"
     Then I validate the response has status code 200
-      And I validate the response body should match with "project/createJavaProjectSchema.json" JSON schema
-      And I validate the response contains the following data
-        | projectId      | {P.projectId}                |
-        | description    | New java Project Description |
-        | language       | JAVA                         |
-        | projectName    | New java Project             |
-        | path           | {P.path}                     |
-        | user.email     | {normalUser.email}           |
-        | user.firstName | {normalUser.firstName}       |
-        | user.lastName  | {normalUser.lastName}        |
-        | user.password  | {normalUser.password}        |
-        | user.rol       | {normalUser.rol}             |
-        | user.userId    | {normalUser.id}              |
-        | user.userName  | {normalUser.userName}        |
+#      And I validate the response body should match with "project/createJavaProjectSchema.json" JSON schema
+    And I validate the response contains the following data
+      | projectId      | {P.projectId}                |
+      | description    | New java Project Description |
+      | language       | JAVA                         |
+      | projectName    | New java Project             |
+      | path           | {P.path}                     |
+      | user.email     | {normalUser.email}           |
+      | user.firstName | {normalUser.firstName}       |
+      | user.lastName  | {normalUser.lastName}        |
+      | user.password  | {normalUser.password}        |
+      | user.rol       | {normalUser.rol}             |
+      | user.userId    | {normalUser.id}              |
+      | user.userName  | {normalUser.userName}        |
