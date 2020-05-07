@@ -28,6 +28,24 @@ Feature: File Controller Actions By POST
       | project.language | PYTHON_32 |
 
 
+  @acceptance @deleteFile @deleteProject
+  Scenario Outline: Cannot able to create without some required field
+
+    When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
+      | <Field> | <Values> |
+
+    Then I validate the response has status code 400
+
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |
+
+    Examples: Required fields for a file
+      | Field     | Values                   |
+      | File Name | without_code             |
+      | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
+
+
   @smoke @deleteFile @deleteProject
   Scenario Outline: File name cannot be just numbers or start with numbers
 
@@ -66,21 +84,3 @@ Feature: File Controller Actions By POST
       | valid name  |
       | v_name 1    |
       | mainClass 0 |
-
-
-  @acceptance @deleteFile @deleteProject
-  Scenario Outline: Cannot able to create without some required field
-
-    When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
-      | <Field> | <Values> |
-
-    Then I validate the response has status code 400
-
-    And I validate the response contains the following data
-      | status | 400         |
-      | error  | Bad Request |
-
-    Examples: Required fields for a file
-      | Field     | Values                   |
-      | File Name | without_code             |
-      | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
