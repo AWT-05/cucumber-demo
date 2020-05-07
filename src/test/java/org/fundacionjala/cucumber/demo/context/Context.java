@@ -62,7 +62,7 @@ public class Context {
     }
 
     /**
-     * Saves ids in a map .
+     * Saves id in a map .
      *
      * @param id project id.
      */
@@ -79,7 +79,7 @@ public class Context {
      * @return id      project id.
      */
     public List<String> getIdsByKey(final String key) {
-        return mapIds.getOrDefault(key,new ArrayList<>());
+        return mapIds.getOrDefault(key, new ArrayList<>());
     }
 
     /**

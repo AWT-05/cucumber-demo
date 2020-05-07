@@ -143,7 +143,7 @@ public class RequestSteps {
     }
 
     /**
-     * Saves the id in a list.
+     * Saves the id in a map.
      *
      * @param key expected data.
      */
