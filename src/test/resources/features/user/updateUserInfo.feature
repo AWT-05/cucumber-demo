@@ -71,5 +71,3 @@ Feature: Update user info
       | status  | 405                                |
       | error   | Method Not Allowed                 |
       | message | Request method 'PUT' not supported |
-
-

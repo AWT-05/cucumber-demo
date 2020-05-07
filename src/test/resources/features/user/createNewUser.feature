@@ -13,13 +13,11 @@ Feature: Create a user
     Then I validate the response has status code 200
     And I validate the response body should match with "user/createNewUserSchema.json" JSON schema
     And I validate the response contains the following data
-      | firstName | Esteban              |
-      #| lastName  | {Uresponse.lastName} |
-      #| email     | {Uresponse.email}    |
-      | userName  | est                  |
-      | password  | pass                 |
-      | rol       | user                 |
-      #| userId    | {Uresponse.userId}   |
+      | firstName | Esteban |
+
+      | userName  | est     |
+      | password  | pass    |
+      | rol       | user    |
 
   @smoke @deleteUser
   Scenario: Run a smoke test with all the parameters
@@ -49,5 +47,5 @@ Feature: Create a user
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | status    | 400                   |
-      | error     | Bad Request           |
+      | status | 400         |
+      | error  | Bad Request |

@@ -14,7 +14,6 @@ Feature: Create a user
       | error   | Forbidden     |
       | message | Access Denied |
 
-
   @negative #@deleteUser
   Scenario: Create a user with no authentication
     When I send a POST request to "/user/new" with the following parameters
@@ -29,5 +28,3 @@ Feature: Create a user
       | userName  | est     |
       | password  | pass    |
       | rol       | user    |
-
-

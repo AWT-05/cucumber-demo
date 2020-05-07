@@ -26,7 +26,7 @@ Feature: User Rol Update
       | email     | mail@mail.com |
       | rol       | admin         |
 
-  @negative
+  @negative @deleteUser
   Scenario: Send a bad input parameter Rol to validate Bad Request
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol123ewe$ | admin |
@@ -37,7 +37,7 @@ Feature: User Rol Update
       | status | 400         |
       | error  | Bad Request |
 
-  @negative
+  @negative @deleteUser
   Scenario: Update existing user rol from User incorrect rol parameter
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol | adm$12"%$$in |
@@ -49,7 +49,7 @@ Feature: User Rol Update
       | lastName  | Oroza    |
       | rol       | user     |
 
-  @negative
+  @negative @deleteUser
   Scenario: Update existing user rol with incorrect HTTP method
     When I send a POST request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol123 | admin |
