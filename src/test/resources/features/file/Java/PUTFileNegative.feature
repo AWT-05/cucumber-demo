@@ -1,5 +1,5 @@
 @negative
-Feature: File Controller PUT
+Feature: File Controller
 
   @acceptance
   Scenario: Gets a File without authentication

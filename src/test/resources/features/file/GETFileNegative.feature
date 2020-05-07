@@ -1,8 +1,8 @@
 @negative
-Feature: File Controller GET
+Feature: File Controller
 
   @acceptance
-  Scenario: Gets a Python File without authentication
+  Scenario: Gets a File without authentication
 
     When I send a GET request to "/file/1"
     Then I validate the response has status code 403

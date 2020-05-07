@@ -1,4 +1,5 @@
-Feature: File Controller POST
+@deleteFile @deleteProject
+Feature: File Controller
 
   Background: Sets authentication and create a project
 
@@ -12,7 +13,7 @@ Feature: File Controller POST
     * I save response as "P"
 
 
-  @acceptance @deleteFile @deleteProject
+  @acceptance
   Scenario: Creates a Java File
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
@@ -28,7 +29,7 @@ Feature: File Controller POST
       | project.language | JAVA      |
 
 
-  @acceptance @deleteFile @deleteProject
+  @acceptance
   Scenario Outline: Cannot able to create without some required field
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
@@ -46,7 +47,7 @@ Feature: File Controller POST
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
 
 
-  @smoke @deleteFile @deleteProject
+  @smoke
   Scenario Outline: File name cannot be just numbers or start with numbers
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
@@ -66,7 +67,7 @@ Feature: File Controller POST
       | 0valid_name |
 
 
-  @smoke @deleteFile @deleteProject
+  @smoke
   Scenario Outline: File name cannot have white spaces
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters

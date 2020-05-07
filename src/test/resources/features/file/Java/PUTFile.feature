@@ -1,4 +1,5 @@
-Feature: File Controller PUT
+@deleteFile @deleteProject
+Feature: File Controller
   Background: Sets authentication and create project
 
     Given I set authentication token using "normalUser" account
@@ -18,7 +19,7 @@ Feature: File Controller PUT
     * I save response as "F"
 
 
-  @acceptance @deleteFile @deleteProject
+  @acceptance
   Scenario: Updates a file created
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -33,7 +34,7 @@ Feature: File Controller PUT
       | project.language | JAVA    |
 
 
-  @smoke @deleteFile @deleteProject
+  @smoke
   Scenario Outline: cannot update a name if only contains numbers or starts with numbers
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -53,7 +54,7 @@ Feature: File Controller PUT
       | 0valid_name |
 
 
-  @smoke @deleteFile @deleteProject
+  @smoke
   Scenario Outline: The file name cannot be updated if have white spaces
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -74,7 +75,7 @@ Feature: File Controller PUT
 
 
 # Enhance
-  @negative @deleteFile @deleteProject
+  @negative
   Scenario Outline: Cannot update without some required field
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -93,7 +94,6 @@ Feature: File Controller PUT
 
 
 # Enhance
-  @deleteFile @deleteProject
   Scenario Outline: Allow updating with only one field
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters

@@ -1,4 +1,5 @@
-Feature: File Controller DELETE
+@acceptance @deleteProject
+Feature: File Controller
 
   Background: Sets authentication and create project
 
@@ -18,8 +19,7 @@ Feature: File Controller DELETE
     * I save "fileId" value to clean file workspace
     * I save response as "F"
 
-
-  @acceptance @deleteProject
+  @acceptance
   Scenario: Deletes a file created
 
     When I send a DELETE request to "/file/{F.fileId}"

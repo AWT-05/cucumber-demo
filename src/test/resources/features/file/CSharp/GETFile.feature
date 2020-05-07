@@ -1,4 +1,5 @@
-Feature: File Controller GET
+@deleteFile @deleteProject
+Feature: File Controller
 
   Background: Sets authentication and create project
 
@@ -19,7 +20,7 @@ Feature: File Controller GET
     * I save response as "F"
 
 
-  @acceptance @deleteFile @deleteProject
+  @acceptance
   Scenario: Gets a file created
 
     When I send a GET request to "/file/{F.fileId}"

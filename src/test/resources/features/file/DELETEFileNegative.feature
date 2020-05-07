@@ -1,5 +1,5 @@
 @negative
-Feature: File Controller DELETE
+Feature: File Controller
 
   @acceptance
   Scenario: Delete a Python File without authentication
@@ -13,7 +13,6 @@ Feature: File Controller DELETE
 
 
 # Enhance
-  @deleteFile @deleteProject
   Scenario Outline: Deletes a file with an ID that doesn't exist
 
     Given I set authentication token using "normalUser" account
@@ -29,7 +28,6 @@ Feature: File Controller DELETE
       | 0      |
 
 
-  @deleteFile @deleteProject
   Scenario Outline: Only numbers are allowed for ID values
 
     Given I set authentication token using "normalUser" account
