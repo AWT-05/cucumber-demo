@@ -1,4 +1,4 @@
-Feature: Create a user
+Feature: User Controller
 
   Background: Set authentication
     Given I set authentication token using "normalUser" account

@@ -1,4 +1,4 @@
-Feature: Update user rol
+Feature: User Controller
 
   @negative
   Scenario: Update existing User rol with no authentication

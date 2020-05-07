@@ -1,4 +1,4 @@
-Feature: Update user info
+Feature: User Controller
 
   @negative
   Scenario: Update existing User with no authentication

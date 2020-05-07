@@ -1,4 +1,4 @@
-Feature: Create a user
+Feature: User Controller
 
   @negative
   Scenario: Create a user with no authentication

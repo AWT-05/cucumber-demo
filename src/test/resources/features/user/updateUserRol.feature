@@ -1,4 +1,4 @@
-Feature: User Rol Update
+Feature: User Controller
 
   Background: Set authentication and create a user
     Given I set authentication token using "normalUser" account
