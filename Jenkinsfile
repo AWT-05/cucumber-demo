@@ -9,7 +9,7 @@ pipeline{
     stages{
         stage('cucucumber tests'){
             steps{
-                withCredentials([file(credentialsId: 'configfile', variable: 'JSONFILE')]) {
+                withCredentials([file(credentialsId: 'configfile-cucumber-demo-project', variable: 'JSONFILE')]) {
                     sh 'chmod +x gradlew'
                     sh "cp \$JSONFILE config.json"
                     //sh './gradlew clean executeBDDTests -PenvironmentName=$ENV_DEPLOY_NAME -PfilterTags=@acceptance'
