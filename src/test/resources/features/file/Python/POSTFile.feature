@@ -1,18 +1,27 @@
 Feature: File Controller Actions
 
-  Background: Set authentication and create project
+  Background: Set authentication and create a project
+
     Given I set authentication token using "admin" account
-      And as "admin" I have a project created of "python" type and save response as "res"
+
+    * I send a POST request to "/project/new/user/{admin.id}" with the following parameters
+      | Language     | python    |
+      | Project Name | PythonPro |
+
+    * I save the "projectId" of project value
+    * I save response as "P"
 
   @deleteFile @deleteProject
-  Scenario: Create a new Python File
-    When I send a POST request to "file/new/project/{res.projectId}" with the following parameters
+  Scenario: Create a Python File
+
+    When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
       | File Name | MainClass                |
-#      And I save response as "P"
-      And I save the "fileId" value
+
     Then I validate the response has status code 200
-      And I validate the response body should match with "file/fileSchema.json" JSON schema
-      And I validate the response contains the following data
-        | name             | MainClass |
-        | project.language | PYTHON_32 |
+    And I save the "fileId" of file value
+    And I validate the response body should match with "file/fileSchema.json" JSON schema
+
+    And I validate the response contains the following data
+      | name             | MainClass |
+      | project.language | PYTHON_32 |

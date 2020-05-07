@@ -18,13 +18,10 @@ Feature: File Controller Actions
     * I save the "fileId" of project value
     * I save response as "F"
 
-  @deleteFile @deleteProject
-  Scenario: Get a file created
+  @deleteProject
+  Scenario: Delete a file created
 
-    When I send a GET request to "/file/{F.fileId}"
+    When I send a DELETE request to "/file/{F.fileId}"
     Then I validate the response has status code 200
-    And I validate the response body should match with "file/fileSchema.json" JSON schema
-
-    And I validate the response contains the following data
-      | name             | MainClass |
-      | project.language | PYTHON_32 |
+    * the file with "{F.fileId}" isn't more in the database
+#    * the file isn't more in the project path in the machine
