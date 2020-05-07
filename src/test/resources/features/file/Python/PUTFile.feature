@@ -1,4 +1,4 @@
-Feature: File Controller Actions
+Feature: File Controller Actions By PUT
 
   Background: Sets authentication and create project
 
@@ -134,6 +134,9 @@ Feature: File Controller Actions
   Scenario Outline: Only numbers are allowed for ID values
 
     When I send a PUT request to "/file/info/<Bad ID>" with the following parameters
+      | Code      | Q29kZSB1cGRhdGVk |
+      | File name | name_updated     |
+
     Then I validate the response has status code 400
 
     And I validate the response contains the following data
