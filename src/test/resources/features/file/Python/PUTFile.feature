@@ -109,3 +109,23 @@ Feature: File Controller Actions
       | Field     | Values                   | Response Name |
       | File name | without_code             | without_code  |
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== | MainClass     |
+
+
+# Enhance
+  @deleteFile @deleteProject
+  Scenario Outline: Update a file with an ID that doesn't exist
+
+    When I send a PUT request to "/file/info/<Bad ID>" with the following parameters
+      | Code      | Q29kZSB1cGRhdGVk |
+      | File name | name_updated     |
+
+    Then I validate the response has status code 404
+
+    And I validate the response contains the following data
+      | status | 404       |
+      | error  | Not Found |
+
+    Examples:
+      | Bad ID |
+      | 0      |
+      | abc    |
