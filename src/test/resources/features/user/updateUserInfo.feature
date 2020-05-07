@@ -1,5 +1,4 @@
-
-Feature: User Info Update
+Feature: Update user info
 
   Background: Set authentication and create a user
     Given I set authentication token using "normalUser" account
@@ -9,13 +8,12 @@ Feature: User Info Update
       | Last Name  | Oroza         |
       | Password   | 1234          |
       | Username   | mau           |
-
     And I save response as "Uresponse"
-    And I save the id as "Uid"
+    And I save "userId" value to clean project workspace
     Then I validate the response has status code 200
 
   @acceptance
-  Scenario: Update existing User
+  Scenario: Update existing User with basic parameters
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Name | MauricioUpdated |
     Then I validate the response has status code 200
@@ -29,7 +27,7 @@ Feature: User Info Update
       | rol       | {Uresponse.rol} |
 
   @smoke
-  Scenario: Update existing User
+  Scenario: Update existing User with all the parameters
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Name | MauricioUpdated  |
       | E-mail     | Updated@mail.com |
@@ -45,7 +43,7 @@ Feature: User Info Update
       | rol       | {Uresponse.rol}  |
 
   @NegativeTest
-  Scenario: Create a new Project with incorrect name parameter
+  Scenario: Update existing User with incorrect lastName parameter
     When I send a POST request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Name       | MauricioUpdated  |
       | E-mail           | Updated@mail.com |

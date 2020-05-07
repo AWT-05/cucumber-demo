@@ -4,7 +4,7 @@ Feature: Create a user
   Background: Set authentication
     Given I set authentication token using "normalUser" account
 
-  @acceptance @deleteUser
+  @acceptance #@deleteUser
   Scenario: Acceptance test with minimun running
     When I send a POST request to "/user/new" with the following parameters
       | First Name | Esteban |

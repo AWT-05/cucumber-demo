@@ -1,11 +1,10 @@
-
 Feature: Create a user
 
   Background: Set authentication
     Given I set authentication token using "normalUser" account
 
-  @acceptance @deleteUser
-  Scenario: Acceptance test with minimun running
+  @acceptance #@deleteUser
+  Scenario: Run acceptance test with basic requirements
     When I send a POST request to "/user/new" with the following parameters
       | First Name | Esteban |
       | Password   | pass    |
@@ -23,7 +22,7 @@ Feature: Create a user
       #| userId    | {Uresponse.userId}   |
 
   @smoke
-  Scenario: Smoke
+  Scenario: Run a smoke test with all the parameters
     When I send a POST request to "/user/new" with the following parameters
       | E-mail     | mail@mail.com |
       | First Name | Mauricio      |
@@ -41,7 +40,7 @@ Feature: Create a user
       | rol       | user          |
 
   @negative
-  Scenario: Create a new Project with incorrect name parameter
+  Scenario: Create a new user with incorrect name parameter
     When I send a POST request to "/user/new" with the following parameters
       | First Namee | Esteban |
       | Password    | pass    |
@@ -50,8 +49,5 @@ Feature: Create a user
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {Uresponse.timestamp} |
       | status    | 400                   |
       | error     | Bad Request           |
-      | message   | {Uresponse.message}   |
-      | path      | {Uresponse.path}      |

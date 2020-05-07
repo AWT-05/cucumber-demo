@@ -13,7 +13,7 @@
       "type": "string"
     },
     "lastName": {
-      "type": "string"
+      "type": ["string","null"]
     },
     "userName": {
       "type": "string"
@@ -22,7 +22,7 @@
       "type": "string"
     },
     "email": {
-      "type": "string"
+      "type": ["string","null"]
     },
     "rol": {
       "type": "string"
