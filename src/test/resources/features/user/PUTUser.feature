@@ -11,7 +11,7 @@ Feature: User Controller
     And I save response as "resp"
     And I save "userId" value to clean user workspace
 
-  @acceptanceTest @deleteUser
+  @acceptance @deleteUser
   Scenario: Update "username" of a user
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | {resp.password} |
@@ -27,7 +27,7 @@ Feature: User Controller
       | email     | mail2@mail.com |
       | rol       | {resp.rol}     |
 
-  @acceptanceTest @deleteUser
+  @acceptance @deleteUser
   Scenario: Update "password" of a user
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | newpass         |
@@ -43,20 +43,20 @@ Feature: User Controller
       | email     | mail2@mail.com |
       | rol       | {resp.rol}     |
 
-  @negativeTest @deleteUser
+  @negative @deleteUser
   Scenario: Update credentials of nonexistent user
     When I send a PUT request to "/user/credentials/9000" with the following parameters
       | Password | newpass  |
       | Username | userName |
     Then I validate the response has status code 500
 
-  @negativeTest @deleteUser
+  @negative @deleteUser
   Scenario: Update credentials without new "Password"
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Username | userName |
     Then I validate the response has status code 400
 
-  @negativeTest @deleteUser
+  @negative @deleteUser
   Scenario: Update credentials without new "Username"
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | newpass |
