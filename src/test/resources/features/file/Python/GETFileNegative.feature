@@ -2,6 +2,7 @@ Feature: Unauthorized Actions By GET
 
   Scenario: Gets a Python File without authentication
 
+    Given I set authentication token using "normalUser" account
     When I send a GET request to "/file/{F.fileId}"
     Then I validate the response has status code 403
 
@@ -13,6 +14,7 @@ Feature: Unauthorized Actions By GET
 # Enhance
   Scenario Outline: Gets a file with an ID that doesn't exist
 
+    Given I set authentication token using "normalUser" account
     When I send a GET request to "/file/<Bad ID>"
     Then I validate the response has status code 404
 
