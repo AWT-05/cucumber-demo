@@ -125,7 +125,33 @@ Feature: File Controller Actions
       | status | 404       |
       | error  | Not Found |
 
-    Examples:
+    Examples: Nonexistent ID
       | Bad ID |
       | 0      |
-      | abc    |
+
+
+  @deleteFile @deleteProject
+  Scenario Outline: Only numbers are allowed for ID values
+
+    When I send a PUT request to "/file/info/<Bad ID>" with the following parameters
+    Then I validate the response has status code 400
+
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |
+
+    Examples: ID not allowed
+      | Bad ID  |
+      | abc     |
+      | #000    |
+      | @123    |
+      | 45!6    |
+      | 32$1    |
+      | 45?6    |
+      | 321*    |
+      | 321/    |
+      | 321.34  |
+      | 456'321 |
+      | 456^321 |
+      | [321]   |
+      | <321>   |
