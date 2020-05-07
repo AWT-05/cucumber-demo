@@ -1,6 +1,6 @@
 Feature: File Controller Actions
 
-  Background: Set authentication and create project
+  Background: Sets authentication and create project
 
     Given I set authentication token using "admin" account
 
@@ -19,9 +19,10 @@ Feature: File Controller Actions
     * I save response as "F"
 
   @deleteProject
-  Scenario: Delete a file created
+  Scenario: Deletes a file created
 
     When I send a DELETE request to "/file/{F.fileId}"
     Then I validate the response has status code 200
-#    * the file with "{F.fileId}" isn't more in the database
+    * I send a GET request to "/file/{F.fileId}"
+    * I validate the response has status code 404
 #    * the file isn't more in the project path in the machine

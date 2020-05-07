@@ -19,12 +19,15 @@ Feature: File Controller Actions
     * I save response as "F"
 
   @deleteFile @deleteProject
-  Scenario: Gets a file created
+  Scenario: Updates a file created
 
-    When I send a GET request to "/file/{F.fileId}"
+    When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
+      | Code      | Q29kZSB1cGRhdGVk |
+      | File name | Name updated     |
+
     Then I validate the response has status code 200
     And I validate the response body should match with "file/fileSchema.json" JSON schema
 
     And I validate the response contains the following data
-      | name             | MainClass |
-      | project.language | PYTHON_32 |
+      | name             | Name updated |
+      | project.language | PYTHON_32    |
