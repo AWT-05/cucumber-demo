@@ -1,5 +1,7 @@
+@negative
 Feature: Unauthorized Actions By GET
 
+  @acceptance
   Scenario: Gets a Python File without authentication
 
     When I send a GET request to "/file/1"

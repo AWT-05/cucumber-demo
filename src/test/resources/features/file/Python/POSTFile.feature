@@ -1,6 +1,6 @@
 Feature: File Controller Actions By POST
 
-  Background: Set authentication and create a project
+  Background: Sets authentication and create a project
 
     Given I set authentication token using "normalUser" account
 
@@ -12,8 +12,8 @@ Feature: File Controller Actions By POST
     * I save response as "P"
 
 
-  @deleteFile @deleteProject
-  Scenario: Create a Python File
+  @acceptance @deleteFile @deleteProject
+  Scenario: Creates a Python File
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
@@ -28,8 +28,8 @@ Feature: File Controller Actions By POST
       | project.language | PYTHON_32 |
 
 
-  @deleteFile @deleteProject
-  Scenario Outline: The file name cannot be just numbers or start with numbers
+  @smoke @deleteFile @deleteProject
+  Scenario Outline: File name cannot be just numbers or start with numbers
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
@@ -48,8 +48,8 @@ Feature: File Controller Actions By POST
       | 0valid_name |
 
 
-  @deleteFile @deleteProject
-  Scenario Outline: The file name cannot have white spaces
+  @smoke @deleteFile @deleteProject
+  Scenario Outline: File name cannot have white spaces
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
@@ -68,8 +68,8 @@ Feature: File Controller Actions By POST
       | mainClass 0 |
 
 
-  @deleteFile @deleteProject
-  Scenario Outline: Creation without some required field
+  @acceptance @deleteFile @deleteProject
+  Scenario Outline: Cannot able to create without some required field
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | <Field> | <Values> |

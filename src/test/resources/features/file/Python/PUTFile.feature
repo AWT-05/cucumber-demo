@@ -19,7 +19,7 @@ Feature: File Controller Actions By PUT
     * I save response as "F"
 
 
-  @deleteFile @deleteProject
+  @acceptance @deleteFile @deleteProject
   Scenario: Updates a file created
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -34,8 +34,8 @@ Feature: File Controller Actions By PUT
       | project.language | PYTHON_32    |
 
 
-  @deleteFile @deleteProject
-  Scenario Outline: The file name cannot be updated if it only contains numbers or starts with numbers
+  @smoke @deleteFile @deleteProject
+  Scenario Outline: cannot update a name if only contains numbers or starts with numbers
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
@@ -54,7 +54,7 @@ Feature: File Controller Actions By PUT
       | 0valid_name |
 
 
-  @deleteFile @deleteProject
+  @smoke @deleteFile @deleteProject
   Scenario Outline: The file name cannot be updated if have white spaces
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters
@@ -74,7 +74,8 @@ Feature: File Controller Actions By PUT
       | mainClass 0 |
 
 
-  @deleteFile @deleteProject
+# Enhance
+  @negative @deleteFile @deleteProject
   Scenario Outline: Updating without some required field
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters

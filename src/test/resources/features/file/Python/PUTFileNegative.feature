@@ -1,5 +1,7 @@
+@negative
 Feature: Unauthorized Actions By PUT
 
+  @acceptance
   Scenario: Gets a Python File without authentication
 
     When I send a PUT request to "/file/info/1" with the following parameters

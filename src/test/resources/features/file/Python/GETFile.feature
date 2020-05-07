@@ -19,7 +19,7 @@ Feature: File Controller Actions By GET
     * I save response as "F"
 
 
-  @deleteFile @deleteProject
+  @acceptance @deleteFile @deleteProject
   Scenario: Gets a file created
 
     When I send a GET request to "/file/{F.fileId}"

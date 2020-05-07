@@ -18,7 +18,8 @@ Feature: File Controller Actions By DELETE
     * I save "fileId" value to clean file workspace
     * I save response as "F"
 
-  @deleteProject
+
+  @acceptance @deleteProject
   Scenario: Deletes a file created
 
     When I send a DELETE request to "/file/{F.fileId}"

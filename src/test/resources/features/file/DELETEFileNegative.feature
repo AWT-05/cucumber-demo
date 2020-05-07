@@ -1,5 +1,7 @@
+@negative
 Feature: Unauthorized Actions By DELETE
 
+  @acceptance
   Scenario: Delete a Python File without authentication
 
     When I send a DELETE request to "/file/1"

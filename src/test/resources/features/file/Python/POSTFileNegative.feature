@@ -1,7 +1,8 @@
+@negative
 Feature: Unauthorized Actions By  POST
 
-  @deleteFile
-  Scenario: Create a Python File without authentication
+  @acceptance @deleteFile
+  Scenario: Creates a Python File without authentication
 
     When I send a POST request to "file/new/project/1" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
@@ -16,7 +17,7 @@ Feature: Unauthorized Actions By  POST
 
 # Enhance
   @deleteFile
-  Scenario Outline: Creation with an project ID that doesn't exist
+  Scenario Outline: Cannot create a file with an project ID that doesn't exist
 
     Given I set authentication token using "normalUser" account
 
