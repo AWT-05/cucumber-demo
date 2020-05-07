@@ -61,11 +61,21 @@ public class Context {
         responses.put(key, response);
     }
 
+
     /**
-     * Saves id in a map .
+     * Gets context responses.
+     *
+     * @return context responses.
+     */
+    public Map<String, Response> getResponses() {
+        return responses;
+    }
+
+    /**
+     * Saves id in a map.
      *
      * @param key map key.
-     * @param id project id.
+     * @param id  project id.
      */
     public void saveIds(final String key, final String id) {
         if (!mapIds.containsKey(key)) {
@@ -75,21 +85,12 @@ public class Context {
     }
 
     /**
-     * Gets saved map by key .
+     * Gets saved map by key.
      *
-     * @param key      map key.
+     * @param key map key.
      * @return id      project id.
      */
     public List<String> getIdsByKey(final String key) {
         return mapIds.getOrDefault(key, new ArrayList<>());
-    }
-
-    /**
-     * Gets context responses.
-     *
-     * @return context responses.
-     */
-    public Map<String, Response> getResponses() {
-        return responses;
     }
 }
