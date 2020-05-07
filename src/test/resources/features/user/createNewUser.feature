@@ -3,7 +3,7 @@ Feature: Create a user
   Background: Set authentication
     Given I set authentication token using "normalUser" account
 
-  @acceptance #@deleteUser
+  @acceptance @deleteUser
   Scenario: Run acceptance test with basic requirements
     When I send a POST request to "/user/new" with the following parameters
       | First Name | Esteban |
@@ -21,7 +21,7 @@ Feature: Create a user
       | rol       | user                 |
       #| userId    | {Uresponse.userId}   |
 
-  @smoke
+  @smoke @deleteUser
   Scenario: Run a smoke test with all the parameters
     When I send a POST request to "/user/new" with the following parameters
       | E-mail     | mail@mail.com |

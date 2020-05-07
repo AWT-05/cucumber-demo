@@ -12,30 +12,50 @@ Feature: User Rol Update
     And I save response as "Uresponse"
     Then I validate the response has status code 200
 
-  @AcceptanceTest
-  Scenario: Update existing User
+  @acceptance
+  Scenario: Update existing user rol from User to Admin
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
-      | Rol | Admin |
+      | Rol | admin |
     Then I validate the response has status code 200
     And I validate the response body should match with "user/updateUserRolSchema.json" JSON schema
     And I validate the response contains the following data
-      | firstName | {Uresponse.firstName} |
-      | lastName  | {Uresponse.lastName}  |
-      | userName  | {Uresponse.userName}  |
-      | password  | {Uresponse.password}  |
-      | email     | {Uresponse.email}     |
-      | rol       | Admin                 |
+      | firstName | Mauricio      |
+      | lastName  | Oroza         |
+      | userName  | mau           |
+      | password  | 1234          |
+      | email     | mail@mail.com |
+      | rol       | admin         |
 
-  @NegativeTest
-  Scenario: Create a new Project with incorrect name parameter
-    When I send a POST request to "/user/rol/{Uresponse.userId}" with the following parameters
-      | Rol123 | Ad$$$$min |
+  @negative
+  Scenario: Send a bad input parameter Rol to validate Bad Request
+    When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
+      | Rol123ewe$ | admin |
     And I save response as "Uresponse"
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | timestamp | {Uresponse.timestamp} |
-      | status    | 400                   |
-      | error     | Bad Request           |
-      | message   | {Uresponse.message}   |
-      | path      | {Uresponse.path}      |
+      | status | 400         |
+      | error  | Bad Request |
+
+  @negative
+  Scenario: Update existing user rol from User incorrect rol parameter
+    When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
+      | Rol | adm$12"%$$in |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 200
+    And I validate the response body should match with "user/updateUserRolSchema.json" JSON schema
+    And I validate the response contains the following data
+      | firstName | Mauricio |
+      | lastName  | Oroza    |
+      | rol       | user     |
+
+  @negative
+  Scenario: Update existing user rol with incorrect HTTP method
+    When I send a POST request to "/user/rol/{Uresponse.userId}" with the following parameters
+      | Rol123 | admin |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 405
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status | 405                |
+      | error  | Method Not Allowed |
