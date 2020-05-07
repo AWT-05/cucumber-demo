@@ -26,4 +26,13 @@ Feature: User Controller
   @negative
   Scenario: Get an specific user with nonexistent id
     When I send a GET request to "/user/9000"
-    Then I validate the response has status code 500
+    Then I validate the response has status code 404
+
+  @smoke
+  Scenario Outline: Get an specific user with nonexistent id
+    When I send a GET request to "/user/<id>"
+    Then I validate the response has status code 400
+    Examples:
+      | id |
+      | d  |
+      | -  |
