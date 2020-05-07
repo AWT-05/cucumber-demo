@@ -3,12 +3,12 @@ package org.fundacionjala.cucumber.demo.hooks;
 import io.cucumber.java.After;
 import io.restassured.response.Response;
 import org.fundacionjala.cucumber.demo.context.Context;
-import org.fundacionjala.cucumber.demo.utils.Mapper;
 
 import static io.restassured.RestAssured.given;
 
 public class FileHooks {
 
+    private static final int CLEAN_CONTEXT_ORDER_VALUE_FILE = 30;
     private final Context context;
     private Response response;
 
@@ -22,17 +22,11 @@ public class FileHooks {
     }
 
     /**
-     * Deletes the created files.
+     * Deletes created files.
      */
-    @After(value = "@deleteFile", order = 2)
-    public void deleteFile() {
-        String idFile = context.getIDs().remove();
-        response = given(context.getReqSpec()).when().delete("/file/".concat(idFile));
-    }
-
-    @After(value = "@deleteProject", order = 1)
-    public void deleteFolder() {
-        String idProject = context.getIDs().remove();
-        response = given(context.getReqSpec()).when().delete("/project/delete/".concat(idProject));
+    @After(value = "@deleteFile", order = CLEAN_CONTEXT_ORDER_VALUE_FILE)
+    public void cleanProjectsData() {
+        context.getIdsByKey("fileId")
+                .forEach(id -> response = given(context.getReqSpec()).when().delete("/file/".concat(id)));
     }
 }

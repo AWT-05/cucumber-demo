@@ -26,8 +26,7 @@ public class ProjectHooks {
      */
     @After(value = "@deleteProject", order = CLEAN_CONTEXT_ORDER_VALUE)
     public void cleanProjectsData() {
-        for (String id : context.getIdsByKey("projectId")) {
-            response = given(context.getReqSpec()).when().delete("/project/delete/".concat(id));
-        }
+        context.getIdsByKey("projectId")
+                .forEach(id -> response = given(context.getReqSpec()).when().delete("/project/delete/".concat(id)));
     }
 }

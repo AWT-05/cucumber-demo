@@ -8,7 +8,7 @@ Feature: File Controller Actions
       | Language     | python    |
       | Project Name | PythonPro |
 
-    * I save the "projectId" of project value
+    * I save "projectId" value to clean project workspace
     * I save response as "P"
 
   @deleteFile @deleteProject
@@ -19,7 +19,7 @@ Feature: File Controller Actions
       | File Name | MainClass                |
 
     Then I validate the response has status code 200
-    And I save the "fileId" of file value
+    And I save "fileId" value to clean file workspace
     And I validate the response body should match with "file/fileSchema.json" JSON schema
 
     And I validate the response contains the following data

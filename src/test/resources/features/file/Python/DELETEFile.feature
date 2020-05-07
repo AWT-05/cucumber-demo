@@ -8,14 +8,14 @@ Feature: File Controller Actions
       | Language     | python    |
       | Project Name | PythonPro |
 
-    * I save the "projectId" of project value
+    * I save "projectId" value to clean project workspace
     * I save response as "P"
 
     * I send a POST request to "file/new/project/{P.projectId}" with the following parameters
       | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
       | File Name | MainClass                |
 
-    * I save the "fileId" of project value
+    * I save "fileId" value to clean file workspace
     * I save response as "F"
 
   @deleteProject
@@ -23,5 +23,5 @@ Feature: File Controller Actions
 
     When I send a DELETE request to "/file/{F.fileId}"
     Then I validate the response has status code 200
-    * the file with "{F.fileId}" isn't more in the database
+#    * the file with "{F.fileId}" isn't more in the database
 #    * the file isn't more in the project path in the machine
