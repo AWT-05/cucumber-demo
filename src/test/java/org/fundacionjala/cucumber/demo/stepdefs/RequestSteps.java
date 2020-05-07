@@ -143,15 +143,13 @@ public class RequestSteps {
     }
 
     /**
-     * Save value of the key passed.
+     * Saves the id in a map.
      *
-     * @param jsonKey identifier to look for.
+     * @param key expected data.
      */
-    @And("I save the {string} value")
-    public void saveValue(String jsonKey) {
-        String value = response.jsonPath().getString(jsonKey);
-        String projectID = response.jsonPath().getString("project.projectId");
-        context.saveIDs(value);
-        context.saveIDs(projectID);
+    @And("I save {string} value to clean (project)(user)(file) workspace")
+    public void iSaveIdValueToCleanWorkSpace(final String key) {
+        String idValue = response.jsonPath().getString(key);
+        context.saveIds(key, idValue);
     }
 }

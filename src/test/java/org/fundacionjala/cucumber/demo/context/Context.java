@@ -3,10 +3,10 @@ package org.fundacionjala.cucumber.demo.context;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 /**
  * Repository class to store and share data among step definitions.
@@ -15,7 +15,7 @@ public class Context {
 
     private RequestSpecification reqSpec;
     private Map<String, Response> responses;
-    private Queue<String> queueIds;
+    private Map<String, List<String>> mapIds;
 
     /**
      * Initializes an instance of Context class.
@@ -30,7 +30,7 @@ public class Context {
     public void initializeValues() {
         reqSpec = null;
         responses = new HashMap<>();
-        queueIds = new LinkedList<>();
+        mapIds = new HashMap<>();
     }
 
     /**
@@ -62,30 +62,34 @@ public class Context {
     }
 
     /**
+     * Saves id in a map .
+     *
+     * @param key map key.
+     * @param id project id.
+     */
+    public void saveIds(final String key, final String id) {
+        if (!mapIds.containsKey(key)) {
+            mapIds.put(key, new ArrayList<>());
+        }
+        mapIds.get(key).add(id);
+    }
+
+    /**
+     * Gets saved map by key .
+     *
+     * @param key      map key.
+     * @return id      project id.
+     */
+    public List<String> getIdsByKey(final String key) {
+        return mapIds.getOrDefault(key, new ArrayList<>());
+    }
+
+    /**
      * Gets context responses.
      *
      * @return context responses.
      */
     public Map<String, Response> getResponses() {
         return responses;
-    }
-
-    /**
-     * Saves id value in the context.
-     *
-     * @param value id.
-     */
-    public void saveIDs(final String value) {
-        queueIds.add(value);
-    }
-
-
-    /**
-     * Gets saved ids.
-     *
-     * @return context ids.
-     */
-    public Queue<String> getIDs() {
-        return queueIds;
     }
 }
