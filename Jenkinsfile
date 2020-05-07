@@ -16,12 +16,7 @@ pipeline{
                     //sh './gradlew clean executeBDDTests'
                     sh './gradlew clean executeBDDTests -PenvironmentName=DEV -PfilterTags=@acceptance'
                 }       
-            }
-            post{
-            always{
-                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'build/reports/allure-report', reportFiles: 'index.html', reportName: "BDD test Report"])
-            }
-        }    
+            }  
         }
         
     }
