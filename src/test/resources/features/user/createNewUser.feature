@@ -1,24 +1,29 @@
-Feature: Create a new user un MOI
+
+Feature: Create a user
 
   Background: Set authentication
-    Given I set authentication token using admin account
+    Given I set authentication token using "normalUser" account
 
-  @AcceptanceTest
-  Scenario: Create a new user
+  @acceptance @deleteUser
+  Scenario: Acceptance test with minimun running
     When I send a POST request to "/user/new" with the following parameters
       | First Name | Esteban |
       | Password   | pass    |
       | Username   | est     |
+    And I save response as "Uresponse"
     Then I validate the response has status code 200
-    And Response body should match with "user/createUserResponseSchema.json" JSON schema
+    And I validate the response body should match with "user/createNewUserSchema.json" JSON schema
     And I validate the response contains the following data
-      | firstName | Esteban |
-      | userName  | est     |
-      | password  | pass    |
-      | rol       | user    |
+      | firstName | Esteban              |
+      #| lastName  | {Uresponse.lastName} |
+      #| email     | {Uresponse.email}    |
+      | userName  | est                  |
+      | password  | pass                 |
+      | rol       | user                 |
+      #| userId    | {Uresponse.userId}   |
 
-  @SmokeTest
-  Scenario: Create a new user
+  @smoke
+  Scenario: Smoke
     When I send a POST request to "/user/new" with the following parameters
       | E-mail     | mail@mail.com |
       | First Name | Mauricio      |
@@ -26,7 +31,7 @@ Feature: Create a new user un MOI
       | Password   | 1234          |
       | Username   | mau           |
     Then I validate the response has status code 200
-    And Response body should match with "user/createUserResponseSchema.json" JSON schema
+    And I validate the response body should match with "user/createNewUserSchema.json" JSON schema
     And I validate the response contains the following data
       | firstName | Mauricio      |
       | lastName  | Oroza         |
@@ -35,7 +40,7 @@ Feature: Create a new user un MOI
       | email     | mail@mail.com |
       | rol       | user          |
 
-  @NegativeTest
+  @negative
   Scenario: Create a new Project with incorrect name parameter
     When I send a POST request to "/user/new" with the following parameters
       | First Namee | Esteban |

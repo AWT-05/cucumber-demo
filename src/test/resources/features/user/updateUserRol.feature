@@ -1,8 +1,8 @@
 Feature: User Rol Update
 
-  Background: Set authentication and create a project
+  Background: Set authentication and create a user
     Given I set authentication token using "normalUser" account
-    When I send a POST request to "/user/rol/{id}" with the following parameters
+    When I send a POST request to "/user/new" with the following parameters
       | E-mail     | mail@mail.com |
       | First Name | Mauricio      |
       | Last Name  | Oroza         |
@@ -14,10 +14,10 @@ Feature: User Rol Update
 
   @AcceptanceTest
   Scenario: Update existing User
-    When I send a PUT request to "/user/rol/{Uresponse,id}" with the following parameters
+    When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol | Admin |
     Then I validate the response has status code 200
-    And Response body should match with "user/updateUserRolSchema.json" JSON schema
+    And I validate the response body should match with "user/updateUserRolSchema.json" JSON schema
     And I validate the response contains the following data
       | firstName | {Uresponse.firstName} |
       | lastName  | {Uresponse.lastName}  |
@@ -28,7 +28,7 @@ Feature: User Rol Update
 
   @NegativeTest
   Scenario: Create a new Project with incorrect name parameter
-    When I send a POST request to "/user/rol/{Uresponse,id}" with the following parameters
+    When I send a POST request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol123 | Ad$$$$min |
     And I save response as "Uresponse"
     Then I validate the response has status code 400

@@ -1,5 +1,6 @@
 package org.fundacionjala.cucumber.demo.stepdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,7 +23,8 @@ import static org.testng.Assert.assertEquals;
 public class RequestSteps {
 
     private static final String SCHEMAS_BASE_FOLDER = "src/test/resources/schemas/";
-    private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status codeuser does not match actual status code.";
+    private static final String STATUS_CODE_ERROR_MESSAGE = "Expected status codeuser "
+            + "does not match actual status code.";
     private static final String DATA_MATCH_ERROR_MSG = "The '%s' field does not match with expected value.";
 
     private Context context;
@@ -139,5 +141,11 @@ public class RequestSteps {
             assertEquals(response.jsonPath().getString(key), expectedData.get(key),
                     String.format(DATA_MATCH_ERROR_MSG, key));
         }
+    }
+
+    @And("I save the id as {string}")
+    public final void iSaveTheIdAs(final String userId) {
+        String idValue = response.jsonPath().getString(userId);
+        context.saveIdsForDeleting(idValue);
     }
 }
