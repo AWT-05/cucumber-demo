@@ -1,10 +1,15 @@
 pipeline{
     agent any
+    environment {
+        CREDIS = 'configfile'
+    }
     stages{
         stage('cucucumber tests'){
             steps{
-                sh 'chmod +x gradlew'
-                sh './gradlew clean executeBDDTests'
+                withDockerRegistry([ credentialsId: "$CREDIS"]) {
+                    sh 'chmod +x gradlew'
+                    sh './gradlew clean executeBDDTests'
+                }       
             }
             post{
             always{
