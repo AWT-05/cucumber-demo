@@ -1,5 +1,6 @@
 package org.fundacionjala.cucumber.demo.stepdefs;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -139,5 +140,16 @@ public class RequestSteps {
             assertEquals(response.jsonPath().getString(key), expectedData.get(key),
                     String.format(DATA_MATCH_ERROR_MSG, key));
         }
+    }
+
+    /**
+     * Saves the id in a map.
+     *
+     * @param key expected data.
+     */
+    @And("I save {string} value to clean (project)(user)(file) workspace")
+    public void iSaveIdValueToCleanWorkSpace(final String key) {
+        String idValue = response.jsonPath().getString(key);
+        context.saveIds(key, idValue);
     }
 }

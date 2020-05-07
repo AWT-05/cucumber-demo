@@ -3,7 +3,9 @@ package org.fundacionjala.cucumber.demo.context;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,6 +15,7 @@ public class Context {
 
     private RequestSpecification reqSpec;
     private Map<String, Response> responses;
+    private Map<String, List<String>> mapIds;
 
     /**
      * Initializes an instance of Context class.
@@ -27,6 +30,7 @@ public class Context {
     public void initializeValues() {
         reqSpec = null;
         responses = new HashMap<>();
+        mapIds = new HashMap<>();
     }
 
     /**
@@ -55,6 +59,29 @@ public class Context {
      */
     public void saveResponse(final String key, final Response response) {
         responses.put(key, response);
+    }
+
+    /**
+     * Saves id in a map .
+     *
+     * @param key map key.
+     * @param id project id.
+     */
+    public void saveIds(final String key, final String id) {
+        if (!mapIds.containsKey(key)) {
+            mapIds.put(key, new ArrayList<>());
+        }
+        mapIds.get(key).add(id);
+    }
+
+    /**
+     * Gets saved map by key .
+     *
+     * @param key      map key.
+     * @return id      project id.
+     */
+    public List<String> getIdsByKey(final String key) {
+        return mapIds.getOrDefault(key, new ArrayList<>());
     }
 
     /**
