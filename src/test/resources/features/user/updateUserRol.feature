@@ -59,3 +59,14 @@ Feature: User Rol Update
     And I validate the response contains the following data
       | status | 405                |
       | error  | Method Not Allowed |
+
+  @negative @deleteUser
+  Scenario: Update existing user rol without User Id
+    When I send a PUT request to "/user/rol" with the following parameters
+      | Rol | admin |
+    Then I validate the response has status code 405
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status  | 405                                |
+      | error   | Method Not Allowed                 |
+      | message | Request method 'PUT' not supported |

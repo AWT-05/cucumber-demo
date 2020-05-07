@@ -61,3 +61,15 @@ Feature: Update user info
       | status | 405                |
       | error  | Method Not Allowed |
 
+  @negative @deleteUser
+  Scenario: Update existing User without User id
+    When I send a PUT request to "/user/info" with the following parameters
+      | First Name | MauricioUpdated |
+    Then I validate the response has status code 405
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status  | 405                                |
+      | error   | Method Not Allowed                 |
+      | message | Request method 'PUT' not supported |
+
+
