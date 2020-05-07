@@ -6,7 +6,7 @@ pipeline{
             steps{
                 withCredentials([file(credentialsId: 'configfile', variable: 'JSONFILE')]) {
                     sh 'chmod +x gradlew'
-                    h "cp \$JSONFILE config.json"
+                    sh "cp \$JSONFILE config.json"
                     sh './gradlew clean executeBDDTests'
                 }       
             }
