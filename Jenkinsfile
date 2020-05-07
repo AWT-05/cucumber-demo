@@ -1,13 +1,14 @@
 pipeline{
     agent any
     environment {
-        CREDIS = 'configfile'
+        CREDENTIALS_FILE  = 'configfile'
     }
     stages{
         stage('cucucumber tests'){
             steps{
-                withCredentials(file[ credentialsId: "$CREDIS"]) {
+                withCredentials([file(credentialsId: 'configfile', variable: 'JSON_FILE' ]) {
                     sh 'chmod +x gradlew'
+                    sh 'use $JSON_FILE'
                     sh './gradlew clean executeBDDTests'
                 }       
             }
