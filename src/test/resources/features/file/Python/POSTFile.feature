@@ -28,7 +28,7 @@ Feature: File Controller Actions
       | project.language | PYTHON_32 |
 
 
-   @deleteFile @deleteProject
+  @deleteFile @deleteProject
   Scenario Outline: The file name cannot be just numbers or start with numbers
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
@@ -81,6 +81,6 @@ Feature: File Controller Actions
       | error  | Bad Request |
 
     Examples: Required fields for a file
-      | Field     | Values       |
-      | File Name | without_code |
-      | Code      | Without Name |
+      | Field     | Values                   |
+      | File Name | without_code             |
+      | Code      | cHl0aG9uQ29kZUJhc2U2NA== |
