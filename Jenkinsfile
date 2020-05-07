@@ -1,13 +1,14 @@
 pipeline{
     agent any
-    environment {
-        CREDENTIALS_FILE  = credentials('configfile')
-    }
+
     stages{
         stage('cucucumber tests'){
             steps{
-                sh 'chmod +x gradlew'
-                sh './gradlew clean executeBDDTests'     
+                withCredentials([file(credentialsId: 'configfile', variable: 'JSONFILE')]) {
+                    sh 'chmod +x gradlew'
+                    h "cp \$JSONFILE config.json"
+                    sh './gradlew clean executeBDDTests'
+                }       
             }
             post{
             always{
