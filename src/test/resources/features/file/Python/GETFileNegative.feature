@@ -2,8 +2,7 @@ Feature: Unauthorized Actions By GET
 
   Scenario: Gets a Python File without authentication
 
-    Given I set authentication token using "normalUser" account
-    When I send a GET request to "/file/{F.fileId}"
+    When I send a GET request to "/file/1"
     Then I validate the response has status code 403
 
     And I validate the response contains the following data
@@ -29,6 +28,7 @@ Feature: Unauthorized Actions By GET
 
   Scenario Outline: Only numbers are allowed for ID values
 
+    Given I set authentication token using "normalUser" account
     When I send a GET request to "/file/<Bad ID>"
     Then I validate the response has status code 400
 
