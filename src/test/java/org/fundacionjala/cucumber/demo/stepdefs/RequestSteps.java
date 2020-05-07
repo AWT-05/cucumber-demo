@@ -143,9 +143,14 @@ public class RequestSteps {
         }
     }
 
-    @And("I save the id as {string}")
-    public final void iSaveTheIdAs(final String userId) {
-        String idValue = response.jsonPath().getString(userId);
-        context.saveIdsForDeleting(idValue);
+    /**
+     * Saves the id in a map.
+     *
+     * @param key expected data.
+     */
+    @And("I save {string} value to clean (project)(user)(file) workspace")
+    public void iSaveIdValueToCleanWorkSpace(final String key) {
+        String idValue = response.jsonPath().getString(key);
+        context.saveIds(key, idValue);
     }
 }
