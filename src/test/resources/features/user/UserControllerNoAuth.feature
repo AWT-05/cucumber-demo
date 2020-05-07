@@ -1,12 +1,7 @@
-Feature: User deletion
+Feature: User Controller
 
   Background: Set request
     Given I don't set authentication token
-
-  @negativeTest
-  Scenario: Delete user without authentication
-    When I send a DELETE request to "/user/delete/{normalUser.id}"
-    Then I validate the response has status code 403
 
   @negativeTest
   Scenario: Get all users without authentication
@@ -23,4 +18,9 @@ Feature: User deletion
     When I send a PUT request to "/user/credentials/{normalUser.id}" with the following parameters
       | Password | newpass               |
       | Username | {normalUser.userName} |
+    Then I validate the response has status code 403
+
+  @negativeTest
+  Scenario: Delete user without authentication
+    When I send a DELETE request to "/user/delete/{normalUser.id}"
     Then I validate the response has status code 403

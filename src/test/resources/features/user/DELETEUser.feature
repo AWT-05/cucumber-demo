@@ -1,4 +1,4 @@
-Feature: User deletion
+Feature: User Controller
 
   Background: Set authentication
     Given I set authentication token using "admin" account
@@ -9,14 +9,15 @@ Feature: User deletion
       | Password   | broken         |
       | Username   | delete         |
     And I save response as "resp"
+    And I save "userId" value to clean user workspace
 
-  @acceptanceTest
+  @acceptanceTest @deleteUser
   Scenario: Delete user
     When I send a DELETE request to "/user/delete/{resp.userId}"
     Then I validate the response has status code 200
 
-  @negativeTest
-  Scenario: Delete user nonexistent id
+  @negativeTest @deleteUser
+  Scenario: Delete user with nonexistent id
     When I send a DELETE request to "/user/delete/9000"
     Then I validate the response has status code 500
 
