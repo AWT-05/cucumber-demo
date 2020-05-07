@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('cucucumber tests'){
             steps{
-                withDockerRegistry(file[ credentialsId: "$CREDIS"]) {
+                withCredentials(file[ credentialsId: "$CREDIS"]) {
                     sh 'chmod +x gradlew'
                     sh './gradlew clean executeBDDTests'
                 }       
