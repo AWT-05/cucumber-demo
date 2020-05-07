@@ -1,5 +1,4 @@
-Feature: File Controller Actions By PUT
-
+Feature: File Controller PUT
   Background: Sets authentication and create project
 
     Given I set authentication token using "normalUser" account

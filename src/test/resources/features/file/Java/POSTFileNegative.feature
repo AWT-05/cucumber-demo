@@ -1,5 +1,5 @@
 @negative
-Feature: Unauthorized Actions By  POST
+Feature: File Controller POST
 
   @acceptance @deleteFile
   Scenario: Creates a Java File without authentication

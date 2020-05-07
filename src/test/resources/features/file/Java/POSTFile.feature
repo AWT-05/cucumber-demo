@@ -1,4 +1,4 @@
-Feature: File Controller Actions By POST
+Feature: File Controller POST
 
   Background: Sets authentication and create a project
 

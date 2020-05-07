@@ -1,5 +1,5 @@
 @negative
-Feature: Unauthorized Actions By DELETE
+Feature: File Controller DELETE
 
   @acceptance
   Scenario: Delete a Python File without authentication

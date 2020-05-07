@@ -1,4 +1,4 @@
-Feature: File Controller Actions By DELETE
+Feature: File Controller DELETE
 
   Background: Sets authentication and create project
 

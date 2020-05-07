@@ -1,4 +1,4 @@
-Feature: File Controller Actions By GET
+Feature: File Controller GET
 
   Background: Sets authentication and create project
 

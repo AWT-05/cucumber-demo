@@ -1,5 +1,5 @@
 @negative
-Feature: Unauthorized Actions By PUT
+Feature: File Controller PUT
 
   @acceptance
   Scenario: Gets a CSharp File without authentication

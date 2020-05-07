@@ -1,5 +1,5 @@
 @negative
-Feature: Unauthorized Actions By GET
+Feature: File Controller GET
 
   @acceptance
   Scenario: Gets a Python File without authentication
