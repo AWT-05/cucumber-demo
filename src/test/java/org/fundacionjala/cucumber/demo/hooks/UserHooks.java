@@ -1,15 +1,12 @@
 package org.fundacionjala.cucumber.demo.hooks;
 
 import io.cucumber.java.After;
+import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
 import org.fundacionjala.cucumber.demo.context.Context;
-import org.fundacionjala.cucumber.demo.utils.Mapper;
-
-import java.util.List;
-
-import static io.restassured.RestAssured.given;
 
 public class UserHooks {
+    private static final int CLEAN_CONTEXT_ORDER_VALUE = 0;
     private Context context;
     private Response response;
 
@@ -22,19 +19,10 @@ public class UserHooks {
         this.context = context;
     }
 
-
-    /*
-    @After(@deleteUser)
-    public void buildDefaultReqSpec() {
-        List<String> idsToDelete = context.getIdsForDeleting();
-        for (String ids: idsToDelete) {
-            String endPointMapped = Mapper.replaceData("/user/delete/".concat(ids), context.getResponses());
-            response = given(context.getReqSpec()).when().delete(endPointMapped);
+    @After(value = "@deleteUser", order = CLEAN_CONTEXT_ORDER_VALUE)
+    public void createUserForDeletion() {
+        for (String id : context.getIdsByKey("userId")) {
+            response = given(context.getReqSpec()).when().delete("/user/delete/".concat(id));
         }
-    }*/
-
-
-
-
-
+    }
 }
