@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('cucucumber tests'){
             steps{
-                withCredentials([file(credentialsId: 'configfile', variable: 'JSON_FILE' ]) {
+                withCredentials([file(credentialsId: 'configfile', variable: 'JSON_FILE')]) {
                     sh 'chmod +x gradlew'
                     sh 'use $JSON_FILE'
                     sh './gradlew clean executeBDDTests'
