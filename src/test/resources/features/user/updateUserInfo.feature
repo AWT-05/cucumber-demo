@@ -71,3 +71,14 @@ Feature: Update user info
       | status  | 405                                |
       | error   | Method Not Allowed                 |
       | message | Request method 'PUT' not supported |
+
+  @negative @deleteUser
+  Scenario: Update existing User without am existing User Id
+    When I send a PUT request to "/user/info/150" with the following parameters
+      | First Name | MauricioUpdated |
+    Then I validate the response has status code 500
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status  | 500                   |
+      | error   | Internal Server Error |
+      | message | No value present      |
