@@ -16,7 +16,6 @@ pipeline{
                     //sh './gradlew clean executeBDDTests -PenvironmentName={ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
                 }       
             }  
-        }
-        
+        }   
     }
 }
