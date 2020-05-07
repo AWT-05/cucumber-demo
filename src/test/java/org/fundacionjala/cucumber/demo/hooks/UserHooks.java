@@ -22,6 +22,8 @@ public class UserHooks {
         this.context = context;
     }
 
+
+    /*
     @After(@deleteUser)
     public void buildDefaultReqSpec() {
         List<String> idsToDelete = context.getIdsForDeleting();
@@ -29,5 +31,10 @@ public class UserHooks {
             String endPointMapped = Mapper.replaceData("/user/delete/".concat(ids), context.getResponses());
             response = given(context.getReqSpec()).when().delete(endPointMapped);
         }
-    }
+    }*/
+
+
+
+
+
 }
