@@ -29,13 +29,13 @@ pipeline{
                     sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
                 }       
             }
-            post {
-            always {
-                script {
-                    allure([includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]])
-                    }
-                }
-            } 
+            // post {
+            // always {
+            //     script {
+            //         allure([includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]])
+            //         }
+            //     }
+            // } 
             // post {
             // always{
             //     script {
@@ -43,6 +43,19 @@ pipeline{
             //         }
             //     }   
             // } 
+        }
+        stage('Reports') {
+            steps {
+                script {
+                        allure([
+                                includeProperties: false,
+                                jdk: '',
+                                properties: [],
+                                reportBuildPolicy: 'ALWAYS',
+                                results: [[path: 'target/allure-results']]
+                        ])
+                }
+            }
         }   
     }
 }
