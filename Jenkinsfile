@@ -4,7 +4,7 @@ pipeline{
         CREDENTIALS_FILE = 'configfile-cucumber-demo-project'     
     }
     parameters {
-        string(name: 'TAG_NAME', defaultValue: " ", description: 'Tag to run specific tests'),
+        string(name: 'TAG_NAME', defaultValue: " ", description: 'Tag to run specific tests') 
         string(name: 'ENV_NAME', defaultValue: "DEV", description: 'Environment to execute test')
     }
     stages {
