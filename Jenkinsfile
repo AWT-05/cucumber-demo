@@ -21,11 +21,14 @@ pipeline{
             }  
         }
         stage('BDD tests'){
+            parameters {
+                string(name: 'TAG_NAME', description: 'Tag to run specific tests')
+            }
             steps {
                 withCredentials([file(credentialsId: "${CREDENTIALS_FILE}", variable: 'JSONFILE')]) {
                     sh 'chmod +x gradlew'
                     sh "cp \$JSONFILE config.json"
-                    sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
+                    sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=$TAG_NAME'
                 }       
             }
             post {
