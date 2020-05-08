@@ -64,6 +64,13 @@ Feature: User Controller
     Then I validate the response has status code 400
 
   @negative
+  Scenario: Update credentials with empty strings
+    When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
+      | Password | {empty} |
+      | Username | {empty} |
+    Then I validate the response has status code 400
+
+  @negative
   Scenario: Update credentials with special chars
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | stayhome |
