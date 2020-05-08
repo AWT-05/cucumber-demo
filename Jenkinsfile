@@ -1,11 +1,11 @@
 pipeline{
     agent any
     environment {
-        CREDENTIALS_FILE = 'configfile-cucumber-demo-project'
-        ENV_DEPLOY_NAME = 'DEV' //'QA'     
+        CREDENTIALS_FILE = 'configfile-cucumber-demo-project'     
     }
     parameters {
         string(name: 'TAG_NAME', description: 'Tag to run specific tests')
+        string(name: 'ENV_NAME', description: 'Specific environment to execute test')
     }
     stages {
         stage('Build'){ 
@@ -27,7 +27,7 @@ pipeline{
                 withCredentials([file(credentialsId: "${CREDENTIALS_FILE}", variable: 'JSONFILE')]) {
                     sh 'chmod +x gradlew'
                     sh "cp \$JSONFILE config.json"
-                    sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=$TAG_NAME'
+                    sh './gradlew clean executeBDDTests -PenvironmentName=$ENV_NAME -PfilterTags=$TAG_NAME'
                 }       
             }
             post {
