@@ -26,3 +26,12 @@ Feature: User Controller
   Scenario: Delete user with nonexistent id
     When I send a DELETE request to "/user/delete/9000"
     Then I validate the response has status code 404
+
+  @smoke
+  Scenario Outline: Delete user only allows numbers
+    When I send a DELETE request to "/user/delete/<id>"
+    Then I validate the response has status code 400
+    Examples:
+      | id |
+      | d  |
+      | -  |

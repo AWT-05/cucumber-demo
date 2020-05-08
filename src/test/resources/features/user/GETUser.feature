@@ -29,7 +29,7 @@ Feature: User Controller
     Then I validate the response has status code 404
 
   @smoke
-  Scenario Outline: Get an specific user with nonexistent id
+  Scenario Outline: Get an specific user only allows numbers
     When I send a GET request to "/user/<id>"
     Then I validate the response has status code 400
     Examples:

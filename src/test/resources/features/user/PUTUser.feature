@@ -62,3 +62,10 @@ Feature: User Controller
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | newpass |
     Then I validate the response has status code 400
+
+  @negative
+  Scenario: Update credentials with special chars
+    When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
+      | Password | stayhome |
+      | Username | .-!      |
+    Then I validate the response has status code 400
