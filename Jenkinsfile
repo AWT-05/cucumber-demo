@@ -53,10 +53,10 @@ pipeline{
                                 jdk: '',
                                 properties: [],
                                 reportBuildPolicy: 'ALWAYS',
-                                results: [[path: 'allure-results']]
+                                results: [[path: 'allure-report']]
                         ])
                 }
-                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'allure-results', reportFiles: 'index.html', reportName: "Allure Report"])
+                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'allure-report', reportFiles: 'index.html', reportName: "Allure Report"])
             }
         }   
     }
