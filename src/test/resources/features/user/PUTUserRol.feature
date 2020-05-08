@@ -73,7 +73,7 @@ Feature: User Controller
       | message | Request method 'PUT' not supported |
 
   @negative
-  Scenario: Update existing User without am existing User Id
+  Scenario: Update existing user rol without an existing User Id
     When I send a PUT request to "/user/rol/9999" with the following parameters
       | Rol | admin |
     Then I validate the response has status code 404
