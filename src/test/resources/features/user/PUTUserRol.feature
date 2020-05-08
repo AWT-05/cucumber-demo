@@ -1,3 +1,4 @@
+@deleteUser
 Feature: User Controller
 
   Background: Set authentication and create a user
@@ -8,8 +9,8 @@ Feature: User Controller
       | Last Name  | Oroza         |
       | Password   | 1234          |
       | Username   | mau           |
-
     And I save response as "Uresponse"
+    And I save "userId" value to clean project workspace
     Then I validate the response has status code 200
 
   @acceptance
@@ -26,7 +27,7 @@ Feature: User Controller
       | email     | mail@mail.com |
       | rol       | admin         |
 
-  @negative @deleteUser
+  @negative
   Scenario: Send a bad input parameter Rol to validate Bad Request
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol123ewe$ | admin |
@@ -37,7 +38,7 @@ Feature: User Controller
       | status | 400         |
       | error  | Bad Request |
 
-  @negative @deleteUser
+  @negative
   Scenario: Update existing user rol from User incorrect rol parameter
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol | adm$12"%$$in |
@@ -49,7 +50,7 @@ Feature: User Controller
       | lastName  | Oroza    |
       | rol       | user     |
 
-  @negative @deleteUser
+  @negative
   Scenario: Update existing user rol with incorrect HTTP method
     When I send a POST request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol123 | admin |
@@ -60,7 +61,7 @@ Feature: User Controller
       | status | 405                |
       | error  | Method Not Allowed |
 
-  @negative @deleteUser
+  @negative
   Scenario: Update existing user rol without User Id
     When I send a PUT request to "/user/rol" with the following parameters
       | Rol | admin |
@@ -71,13 +72,12 @@ Feature: User Controller
       | error   | Method Not Allowed                 |
       | message | Request method 'PUT' not supported |
 
-  @negative @deleteUser
+  @negative
   Scenario: Update existing User without am existing User Id
-    When I send a PUT request to "/user/rol/150" with the following parameters
+    When I send a PUT request to "/user/rol/9999" with the following parameters
       | Rol | admin |
-    Then I validate the response has status code 500
+    Then I validate the response has status code 404
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
-      | status  | 500                   |
-      | error   | Internal Server Error |
-      | message | No value present      |
+      | status | 404       |
+      | error  | Not Found |
