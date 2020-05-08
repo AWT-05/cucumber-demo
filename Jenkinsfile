@@ -28,7 +28,12 @@ pipeline{
                     sh "cp \$JSONFILE config.json"
                     sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
                 }       
-            }  
+            } 
+            post {
+            always{
+                allure([includeProperties: false, jdk: 'Java', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '/build/reports/allure-report']]])
+                }
+            } 
         }   
     }
 }
