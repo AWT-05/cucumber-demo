@@ -3,8 +3,7 @@ pipeline{
 
     environment {
         CREDENTIALS_FILE = 'configfile-cucumber-demo-project'
-        ENV_DEPLOY_NAME = 'DEV' //'QA'
-        
+        ENV_DEPLOY_NAME = 'DEV' //'QA'     
     }
     stages {
         stage('Build'){ 
@@ -32,7 +31,7 @@ pipeline{
             post {
             always {
                 script {
-                    allure([includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'allure-results']]])
+                    allure([includeProperties: false, jdk: '', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: 'build/allure-results']]])
                     }
                 }
             }    
