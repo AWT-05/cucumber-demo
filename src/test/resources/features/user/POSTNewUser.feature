@@ -14,7 +14,6 @@ Feature: User Controller
     And I validate the response body should match with "user/createNewUserSchema.json" JSON schema
     And I validate the response contains the following data
       | firstName | Esteban |
-
       | userName  | est     |
       | password  | pass    |
       | rol       | user    |
@@ -43,6 +42,17 @@ Feature: User Controller
       | First Namee | Esteban |
       | Password    | pass    |
       | Username    | est     |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 400
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |
+
+  @negative
+  Scenario: Create a new user without required parameters
+    When I send a POST request to "/user/new" with the following parameters
+      | Username | mau |
     And I save response as "Uresponse"
     Then I validate the response has status code 400
     And I validate the response body should match with "common/errorSchema.json" JSON schema
