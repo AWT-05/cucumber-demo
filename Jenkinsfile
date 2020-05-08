@@ -43,17 +43,20 @@ pipeline{
             //         }
             //     }   
             // } 
+            
         }
         stage('Reports') {
             steps {
+                
                 script {
-                        allure([
-                                includeProperties: false,
-                                jdk: '',
-                                properties: [],
-                                reportBuildPolicy: 'ALWAYS',
-                                results: [[path: 'target/allure-results']]
-                        ])
+                        allure includeProperties: false, jdk: '', properties: [[key: '', value: '']], results: [[path: 'allure-results'], [path: 'allure-results']]
+                        // allure([
+                        //         includeProperties: false,
+                        //         jdk: '',
+                        //         properties: [],
+                        //         reportBuildPolicy: 'ALWAYS',
+                        //         results: [[path: 'target/allure-results']]
+                        // ])
                 }
             }
         }   
