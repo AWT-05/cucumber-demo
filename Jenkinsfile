@@ -27,7 +27,6 @@ pipeline{
                     sh 'chmod +x gradlew'
                     sh "cp \$JSONFILE config.json"
                     sh './gradlew clean executeBDDTests -PenvironmentName=${ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
-                    //sh './gradlew clean executeBDDTests -PenvironmentName={ENV_DEPLOY_NAME} -PfilterTags=@acceptance'
                 }       
             }  
         }   
