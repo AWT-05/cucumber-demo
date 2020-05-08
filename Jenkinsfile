@@ -31,8 +31,10 @@ pipeline{
             } 
             post {
             always{
-                allure([includeProperties: false, jdk: 'Java', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '/build/reports/allure-report']]])
-                }
+                script {
+                    allure([includeProperties: false, jdk: 'Java', properties: [], reportBuildPolicy: 'ALWAYS', results: [[path: '/build/reports/allure-report']]])
+                    }
+                }   
             } 
         }   
     }
