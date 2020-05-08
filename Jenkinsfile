@@ -47,7 +47,6 @@ pipeline{
         }
         stage('Reports') {
             steps {
-                
                 script {
                         allure([
                                 includeProperties: false,
@@ -57,6 +56,7 @@ pipeline{
                                 results: [[path: 'allure-results']]
                         ])
                 }
+                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'allure-results', reportFiles: 'index.html', reportName: "Allure Report"])
             }
         }   
     }
