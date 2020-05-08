@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public final class Mapper {
 
     private static final String STORED_VALUE_PATTERN = "\\{[0-9a-zA-Z._\\-\\[\\]]+}";
+    private static final String EMPTY_KEY = "empty";
     private static final String EMPTY_STRING = "";
     private static final String CAP_REGEX = "[{}]";
     private static final String DOT_REGEX = "\\.";
@@ -69,6 +70,9 @@ public final class Mapper {
      * @return value replaced.
      */
     private static String replaceValue(final String value, final Map<String, Response> responses) {
+        if (value.equals(EMPTY_KEY)) {
+            return EMPTY_STRING;
+        }
         String[] values = value.split(DOT_REGEX, SPLIT_LIMIT);
         Map<String, String> account = Environment.getInstance().getAccount(values[0]);
         if (account.isEmpty()) {

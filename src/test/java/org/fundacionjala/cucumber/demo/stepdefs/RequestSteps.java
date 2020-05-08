@@ -152,4 +152,13 @@ public class RequestSteps {
         String idValue = response.jsonPath().getString(key);
         context.saveIds(key, idValue);
     }
+
+    /**
+     * Sets base request specification without authentication.
+     */
+    @When("I don't set authentication token")
+    public void withoutAuthenticationToken() {
+        RequestSpecification reqSpec = RequestSpecUtils.build();
+        context.setReqSpec(reqSpec);
+    }
 }
