@@ -5,7 +5,7 @@ pipeline{
     }
     parameters {
         string(name: 'TAG_NAME', description: 'Tag to run specific tests'),
-        string(name: 'ENV_NAME', description: 'Specific environment to execute test')
+        string(name: 'ENV_NAME', description: 'Environment to execute test')
     }
     stages {
         stage('Build'){ 
