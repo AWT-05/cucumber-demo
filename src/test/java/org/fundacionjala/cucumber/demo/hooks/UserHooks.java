@@ -6,7 +6,7 @@ import io.restassured.response.Response;
 import org.fundacionjala.cucumber.demo.context.Context;
 
 public class UserHooks {
-    private static final int CLEAN_CONTEXT_ORDER_VALUE = 0;
+    private static final int CLEAN_CONTEXT_ORDER_VALUE = 10;
     private Context context;
     private Response response;
 

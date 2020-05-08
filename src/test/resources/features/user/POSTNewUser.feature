@@ -59,3 +59,18 @@ Feature: User Controller
     And I validate the response contains the following data
       | status | 400         |
       | error  | Bad Request |
+
+    ##
+  @negative
+  Scenario: Create a new user with empty parameters
+    When I send a POST request to "/user/new" with the following parameters
+      | First Name | {empty} |
+      | Password   | {empty} |
+      | Username   | {empty} |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 400
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |
+##
