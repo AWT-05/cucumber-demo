@@ -7,6 +7,20 @@ pipeline{
         
     }
     stages {
+        stage('Build'){ 
+            steps{
+                sh 'chmod +x gradlew'
+                sh './gradlew clean build'  
+            }
+            post {
+            always{
+                publishHTML (target: [allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'build/reports/tests/test', reportFiles: 'index.html', reportName: "MOI-project test Report"])
+                }
+            success {
+                archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+                }
+            }  
+        }
         stage('BDD tests'){
             steps {
                 withCredentials([file(credentialsId: "${CREDENTIALS_FILE}", variable: 'JSONFILE')]) {
