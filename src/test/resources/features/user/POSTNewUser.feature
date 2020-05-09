@@ -3,7 +3,7 @@ Feature: User Controller
   Background: Set authentication
     Given I set authentication token using "normalUser" account
 
-  @acceptance @deleteUser
+  @functional @deleteUser
   Scenario: Run acceptance test with basic requirements
     When I send a POST request to "/user/new" with the following parameters
       | First Name | Esteban |
@@ -60,7 +60,6 @@ Feature: User Controller
       | status | 400         |
       | error  | Bad Request |
 
-    ##
   @negative
   Scenario: Create a new user with empty parameters
     When I send a POST request to "/user/new" with the following parameters
@@ -73,4 +72,3 @@ Feature: User Controller
     And I validate the response contains the following data
       | status | 400         |
       | error  | Bad Request |
-##

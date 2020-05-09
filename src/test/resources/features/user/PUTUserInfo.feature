@@ -13,8 +13,8 @@ Feature: User Controller
     And I save "userId" value to clean project workspace
     Then I validate the response has status code 200
 
-  @acceptance
-  Scenario: Update existing User with basic parameters
+  @functional
+  Scenario: Update existing user with basic parameters
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Name | MauricioUpdated |
     Then I validate the response has status code 200
@@ -23,7 +23,7 @@ Feature: User Controller
       | firstName | MauricioUpdated |
 
   @smoke
-  Scenario: Update existing User with all the parameters
+  Scenario: Update existing user with all the parameters
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | E-mail     | Updated@mail.com |
       | First Name | MauricioUpdated  |
@@ -38,7 +38,7 @@ Feature: User Controller
       | email     | Updated@mail.com |
 
   @negative
-  Scenario: Update existing User without required parameters
+  Scenario: Update existing user without required parameters
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | LastName | OrozaUpdated |
     And I save response as "Uresponse"
@@ -49,7 +49,7 @@ Feature: User Controller
       | error  | Bad Request |
 
   @negative
-  Scenario: Update existing User with incorrect lastName parameter
+  Scenario: Update existing user with incorrect lastName parameter
     When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Namesdfgdshfr | MauricioUpdated  |
       | E-mail              | Updated@mail.com |
@@ -61,7 +61,7 @@ Feature: User Controller
       | error  | Bad Request |
 
   @negative
-  Scenario: Update existing User with incorrect HTTP method
+  Scenario: Update existing user with incorrect HTTP method
     When I send a POST request to "/user/info/{Uresponse.userId}" with the following parameters
       | First Namesdfgdshfr | MauricioUpdated  |
       | E-mail              | Updated@mail.com |
@@ -73,7 +73,7 @@ Feature: User Controller
       | error  | Method Not Allowed |
 
   @negative
-  Scenario: Update existing User without User id
+  Scenario: Update existing user without User id
     When I send a PUT request to "/user/info" with the following parameters
       | First Name | MauricioUpdated |
     Then I validate the response has status code 405
@@ -84,11 +84,24 @@ Feature: User Controller
       | message | Request method 'PUT' not supported |
 
   @negative
-  Scenario: Update existing User without an existing User Id
-    When I send a PUT request to "/user/info/150" with the following parameters
+  Scenario: Update existing user without an existing User Id
+    When I send a PUT request to "/user/info/700" with the following parameters
       | First Name | MauricioUpdated |
     Then I validate the response has status code 404
     And I validate the response body should match with "common/errorSchema.json" JSON schema
     And I validate the response contains the following data
       | status | 404       |
       | error  | Not Found |
+
+  @negative
+  Scenario: Update existing user with empty parameters
+    When I send a PUT request to "/user/info/{Uresponse.userId}" with the following parameters
+      | E-mail     | {empty} |
+      | First Name | {empty} |
+      | LastName   | {empty} |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 400
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |

@@ -13,7 +13,7 @@ Feature: User Controller
     And I save "userId" value to clean project workspace
     Then I validate the response has status code 200
 
-  @acceptance
+  @functional
   Scenario: Update existing user rol from User to Admin
     When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
       | Rol | admin |
@@ -81,3 +81,14 @@ Feature: User Controller
     And I validate the response contains the following data
       | status | 404       |
       | error  | Not Found |
+
+  @negative
+  Scenario: Update existing user rol with empty parameter
+    When I send a PUT request to "/user/rol/{Uresponse.userId}" with the following parameters
+      | Rol | {empty} |
+    And I save response as "Uresponse"
+    Then I validate the response has status code 400
+    And I validate the response body should match with "common/errorSchema.json" JSON schema
+    And I validate the response contains the following data
+      | status | 400         |
+      | error  | Bad Request |
