@@ -3,13 +3,13 @@ Feature: User Controller
   Background: Set authentication
     Given I set authentication token using "admin" account
 
-  @acceptance
+  @functional
   Scenario: Get all users
     When I send a GET request to "/user"
     Then I validate the response has status code 200
     And I validate the response body should match with "user/getUsersResponseSchema.json" JSON schema
 
-  @acceptance
+  @functional
   Scenario: Get an specific user
     When I send a GET request to "/user/{normalUser.id}"
     Then I validate the response has status code 200

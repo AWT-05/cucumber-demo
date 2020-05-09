@@ -12,7 +12,7 @@ Feature: User Controller
     And I save response as "resp"
     And I save "userId" value to clean user workspace
 
-  @acceptance
+  @functional
   Scenario: Delete user
     When I send a DELETE request to "/user/delete/{resp.userId}"
     Then I validate the response has status code 200

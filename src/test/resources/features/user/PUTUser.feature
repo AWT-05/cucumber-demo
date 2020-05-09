@@ -12,7 +12,7 @@ Feature: User Controller
     And I save response as "resp"
     And I save "userId" value to clean user workspace
 
-  @acceptance
+  @functional
   Scenario: Update "username" of a user
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | {resp.password} |
@@ -28,7 +28,7 @@ Feature: User Controller
       | email     | mail2@mail.com |
       | rol       | {resp.rol}     |
 
-  @acceptance
+  @functional
   Scenario: Update "password" of a user
     When I send a PUT request to "/user/credentials/{resp.userId}" with the following parameters
       | Password | newpass         |
