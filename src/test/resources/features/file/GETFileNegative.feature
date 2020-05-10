@@ -4,6 +4,7 @@ Feature: File Controller
   @acceptance
   Scenario: Gets a File without authentication
 
+    Given I don't set authentication token
     When I send a GET request to "/file/1"
     Then I validate the response has status code 403
 
