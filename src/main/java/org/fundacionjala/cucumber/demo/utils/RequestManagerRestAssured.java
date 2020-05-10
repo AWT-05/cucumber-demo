@@ -14,6 +14,7 @@ import static io.restassured.RestAssured.given;
 public class RequestManagerRestAssured implements IRequestManager {
 
     private final Context context;
+    private RequestSpecification managerReqSpec;
 
     public RequestManagerRestAssured(final Context context) {
         this.context = context;
@@ -25,16 +26,16 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @param username account username.
      */
     public void withAuthentication(final String username) {
-        RequestSpecification reqSpec = RequestSpecUtils.build(username);
-        context.setReqSpec(reqSpec);
+        managerReqSpec = RequestSpecUtils.build(username);
+        context.setReqSpec(managerReqSpec);
     }
 
     /**
      * Sets request specification base without authentication.
      */
     public void withoutAuthentication() {
-        RequestSpecification reqSpec = RequestSpecUtils.build();
-        context.setReqSpec(reqSpec);
+        managerReqSpec = RequestSpecUtils.build();
+        context.setReqSpec(managerReqSpec);
     }
 
     /**
@@ -44,7 +45,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return RequestManager object.
      */
     public RequestManagerRestAssured params(final Map<String, String> params) {
-        context.getReqSpec().params(mapOut(params));
+        managerReqSpec = given(context.getReqSpec()).params(mapOut(params));
         return this;
     }
 
@@ -55,7 +56,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return RequestManager object.
      */
     public RequestManagerRestAssured body(final String jsonData) {
-        context.getReqSpec().body(jsonData);
+        managerReqSpec = given(context.getReqSpec()).body(jsonData);
         return this;
     }
 
@@ -66,7 +67,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return The response of the request.
      */
     public Response get(final String endpoint) {
-        return given(context.getReqSpec()).when().get(mapOut(endpoint));
+        return given(managerReqSpec).when().get(mapOut(endpoint));
     }
 
     /**
@@ -76,7 +77,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return The response of the request.
      */
     public Response delete(final String endpoint) {
-        return given(context.getReqSpec()).when().delete(mapOut(endpoint));
+        return given(managerReqSpec).when().delete(mapOut(endpoint));
     }
 
     /**
@@ -86,7 +87,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return The response of the request.
      */
     public Response post(final String endpoint) {
-        return given(context.getReqSpec()).when().post(mapOut(endpoint));
+        return given(managerReqSpec).when().post(mapOut(endpoint));
     }
 
     /**
@@ -96,7 +97,7 @@ public class RequestManagerRestAssured implements IRequestManager {
      * @return The response of the request.
      */
     public Response put(final String endpoint) {
-        return given(context.getReqSpec()).when().put(mapOut(endpoint));
+        return given(managerReqSpec).when().put(mapOut(endpoint));
     }
 
     private String mapOut(final String endpoint) {
