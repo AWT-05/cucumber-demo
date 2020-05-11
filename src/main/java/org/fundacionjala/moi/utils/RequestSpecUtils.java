@@ -1,10 +1,10 @@
-package org.fundacionjala.cucumber.demo.utils;
+package org.fundacionjala.moi.utils;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.fundacionjala.cucumber.demo.config.Environment;
+import org.fundacionjala.moi.config.Environment;
 
 import java.util.Map;
 

@@ -1,8 +1,8 @@
-package org.fundacionjala.cucumber.demo.utils;
+package org.fundacionjala.moi.utils;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.moi.context.Context;
 
 import java.util.Map;
 

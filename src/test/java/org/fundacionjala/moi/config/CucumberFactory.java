@@ -1,8 +1,8 @@
-package org.fundacionjala.cucumber.demo.config;
+package org.fundacionjala.moi.config;
 
 import io.cucumber.core.backend.ObjectFactory;
 import io.cucumber.picocontainer.PicoFactory;
-import org.fundacionjala.cucumber.demo.utils.RequestManagerRestAssured;
+import org.fundacionjala.moi.utils.RequestManagerRestAssured;
 
 
 public class CucumberFactory implements ObjectFactory {

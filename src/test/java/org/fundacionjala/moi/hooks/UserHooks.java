@@ -1,9 +1,9 @@
-package org.fundacionjala.cucumber.demo.hooks;
+package org.fundacionjala.moi.hooks;
 
 import io.cucumber.java.After;
 import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
-import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.moi.context.Context;
 
 public class UserHooks {
     private static final int CLEAN_CONTEXT_ORDER_VALUE = 10;

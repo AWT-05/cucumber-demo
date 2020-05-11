@@ -1,7 +1,7 @@
-package org.fundacionjala.cucumber.demo.utils;
+package org.fundacionjala.moi.utils;
 
 import io.restassured.response.Response;
-import org.fundacionjala.cucumber.demo.config.Environment;
+import org.fundacionjala.moi.config.Environment;
 
 import java.util.Map;
 import java.util.regex.Matcher;

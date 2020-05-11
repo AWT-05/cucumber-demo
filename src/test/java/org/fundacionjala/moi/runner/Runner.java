@@ -1,4 +1,4 @@
-package org.fundacionjala.cucumber.demo.runner;
+package org.fundacionjala.moi.runner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeTest;
 @CucumberOptions(
         strict = true,
         plugin = {"pretty"},
-        glue = {"org.fundacionjala.cucumber.demo"},
+        glue = {"org.fundacionjala.moi"},
         features = {"src/test/resources/features"}
 )
 public class Runner extends AbstractTestNGCucumberTests {

@@ -1,8 +1,8 @@
-package org.fundacionjala.cucumber.demo.hooks;
+package org.fundacionjala.moi.hooks;
 
 import io.cucumber.java.After;
 import io.restassured.response.Response;
-import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.moi.context.Context;
 
 import static io.restassured.RestAssured.given;
 

@@ -1,9 +1,9 @@
-package org.fundacionjala.cucumber.demo.hooks;
+package org.fundacionjala.moi.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.fundacionjala.cucumber.demo.context.Context;
-import org.fundacionjala.cucumber.demo.utils.RequestSpecUtils;
+import org.fundacionjala.moi.context.Context;
+import org.fundacionjala.moi.utils.RequestSpecUtils;
 
 /**
  * Groups common preconditions and post conditions methods.

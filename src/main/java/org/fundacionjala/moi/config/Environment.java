@@ -1,4 +1,4 @@
-package org.fundacionjala.cucumber.demo.config;
+package org.fundacionjala.moi.config;
 
 import io.restassured.path.json.JsonPath;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package org.fundacionjala.cucumber.demo.utils;
+package org.fundacionjala.moi.utils;
 
 import io.restassured.response.Response;
 

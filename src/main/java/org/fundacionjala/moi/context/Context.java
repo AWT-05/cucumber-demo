@@ -1,4 +1,4 @@
-package org.fundacionjala.cucumber.demo.context;
+package org.fundacionjala.moi.context;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;

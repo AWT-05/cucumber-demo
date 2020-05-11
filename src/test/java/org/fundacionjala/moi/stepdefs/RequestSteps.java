@@ -1,13 +1,13 @@
-package org.fundacionjala.cucumber.demo.stepdefs;
+package org.fundacionjala.moi.stepdefs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import org.fundacionjala.cucumber.demo.context.Context;
-import org.fundacionjala.cucumber.demo.utils.IRequestManager;
-import org.fundacionjala.cucumber.demo.utils.Mapper;
+import org.fundacionjala.moi.context.Context;
+import org.fundacionjala.moi.utils.IRequestManager;
+import org.fundacionjala.moi.utils.Mapper;
 
 import java.io.File;
 import java.util.Map;
