@@ -5,15 +5,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 import org.fundacionjala.cucumber.demo.context.Context;
+import org.fundacionjala.cucumber.demo.utils.IRequestManager;
 import org.fundacionjala.cucumber.demo.utils.Mapper;
-import org.fundacionjala.cucumber.demo.utils.RequestSpecUtils;
 
 import java.io.File;
 import java.util.Map;
 
-import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.testng.Assert.assertEquals;
 
@@ -27,16 +25,19 @@ public class RequestSteps {
             + "does not match actual status code.";
     private static final String DATA_MATCH_ERROR_MSG = "The '%s' field does not match with expected value.";
 
-    private Context context;
+    private final Context context;
     private Response response;
+    private final IRequestManager requestManager;
 
     /**
      * Initializes an instance of RequestSteps class.
      *
-     * @param context scenario context.
+     * @param context        scenario context.
+     * @param requestManager helper to sending requests.
      */
-    public RequestSteps(final Context context) {
+    public RequestSteps(final Context context, final IRequestManager requestManager) {
         this.context = context;
+        this.requestManager = requestManager;
     }
 
     /**
@@ -46,8 +47,15 @@ public class RequestSteps {
      */
     @Given("I set authentication token using {string} account")
     public void setAuthenticationToken(final String username) {
-        RequestSpecification reqSpec = RequestSpecUtils.build(username);
-        context.setReqSpec(reqSpec);
+        requestManager.withAuthentication(username);
+    }
+
+    /**
+     * Sets base request specification without authentication.
+     */
+    @When("I don't set authentication token")
+    public void withoutAuthenticationToken() {
+        requestManager.withoutAuthentication();
     }
 
     /**
@@ -57,8 +65,7 @@ public class RequestSteps {
      */
     @When("I send a GET request to {string}")
     public void sendGETRequestWithParameters(final String endpoint) {
-        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
-        response = given(context.getReqSpec()).when().get(endpointMapped);
+        response = requestManager.get(endpoint);
     }
 
     /**
@@ -68,8 +75,7 @@ public class RequestSteps {
      */
     @When("I send a DELETE request to {string}")
     public void sendDELETERequestWithParameters(final String endpoint) {
-        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
-        response = given(context.getReqSpec()).when().delete(endpointMapped);
+        response = requestManager.delete(endpoint);
     }
 
     /**
@@ -80,9 +86,7 @@ public class RequestSteps {
      */
     @When("I send a POST request to {string} with the following parameters")
     public void sendPOSTRequestWithParameters(final String endpoint, final Map<String, String> params) {
-        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
-        Map<String, String> requestData = Mapper.replaceData(params, context.getResponses());
-        response = given(context.getReqSpec()).params(requestData).when().post(endpointMapped);
+        response = requestManager.params(params).post(endpoint);
     }
 
     /**
@@ -93,9 +97,7 @@ public class RequestSteps {
      */
     @When("I send a PUT request to {string} with the following parameters")
     public void sendPUTRequestWithParameters(final String endpoint, final Map<String, String> params) {
-        String endpointMapped = Mapper.replaceData(endpoint, context.getResponses());
-        Map<String, String> requestData = Mapper.replaceData(params, context.getResponses());
-        response = given(context.getReqSpec()).params(requestData).when().put(endpointMapped);
+        response = requestManager.params(params).put(endpoint);
     }
 
     /**
@@ -152,14 +154,5 @@ public class RequestSteps {
     public void iSaveIdValueToCleanWorkSpace(final String key) {
         String idValue = response.jsonPath().getString(key);
         context.saveIds(key, idValue);
-    }
-
-    /**
-     * Sets base request specification without authentication.
-     */
-    @When("I don't set authentication token")
-    public void withoutAuthenticationToken() {
-        RequestSpecification reqSpec = RequestSpecUtils.build();
-        context.setReqSpec(reqSpec);
     }
 }

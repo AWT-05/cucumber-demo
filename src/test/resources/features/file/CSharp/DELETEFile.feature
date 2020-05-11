@@ -1,4 +1,4 @@
-@acceptance @deleteProject
+@deleteProject
 Feature: File Controller
 
   Background: Sets authentication and create project
@@ -24,5 +24,3 @@ Feature: File Controller
 
     When I send a DELETE request to "/file/{F.fileId}"
     Then I validate the response has status code 200
-    * I send a GET request to "/file/{F.fileId}"
-    * I validate the response has status code 404

@@ -2,6 +2,7 @@
 Feature: Project Controller
 
   Scenario: Read all Projects without authentication
+    Given I don't set authentication token
     When I send a GET request to "/project"
     Then I validate the response has status code 403
     And I validate the response body should match with "common/errorSchema.json" JSON schema

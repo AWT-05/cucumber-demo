@@ -1,7 +1,7 @@
-@negative
+@negative @deleteFile
 Feature: File Controller
 
-  @acceptance @deleteFile
+  @acceptance
   Scenario: Creates a Java File without authentication
 
     When I send a POST request to "file/new/project/1" with the following parameters
@@ -16,7 +16,6 @@ Feature: File Controller
 
 
 # Enhance
-  @deleteFile
   Scenario Outline: Cannot create a file with an project ID that doesn't exist
 
     Given I set authentication token using "normalUser" account

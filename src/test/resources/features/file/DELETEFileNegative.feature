@@ -2,8 +2,9 @@
 Feature: File Controller
 
   @acceptance
-  Scenario: Delete a Python File without authentication
+  Scenario: Delete a File without authentication
 
+    Given I don't set authentication token
     When I send a DELETE request to "/file/1"
     Then I validate the response has status code 403
 
