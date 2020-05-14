@@ -13,7 +13,7 @@ Feature: File Controller
     * I save response as "P"
 
 
-  @acceptance
+  @functional
   Scenario: Creates a Python File
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters
@@ -29,7 +29,7 @@ Feature: File Controller
       | project.language | PYTHON_32 |
 
 
-  @acceptance
+  @functional
   Scenario Outline: Cannot able to create without some required field
 
     When I send a POST request to "file/new/project/{P.projectId}" with the following parameters

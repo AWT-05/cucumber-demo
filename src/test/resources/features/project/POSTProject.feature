@@ -1,4 +1,4 @@
-@acceptance
+@functional
 Feature: Project Controller
 
   Background: Set authentication

@@ -1,7 +1,7 @@
 @negative
 Feature: File Controller
 
-  @acceptance
+  @functional
   Scenario: Gets a File without authentication
 
     Given I don't set authentication token

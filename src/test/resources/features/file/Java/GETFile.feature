@@ -20,7 +20,7 @@ Feature: File Controller
     * I save response as "F"
 
 
-  @acceptance
+  @functional
   Scenario: Gets a file created
 
     When I send a GET request to "/file/{F.fileId}"
