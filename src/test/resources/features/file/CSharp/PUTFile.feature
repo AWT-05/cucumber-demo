@@ -20,7 +20,7 @@ Feature: File Controller
     * I save response as "F"
 
 
-  @acceptance
+  @functional
   Scenario: Updates a file created
 
     When I send a PUT request to "/file/info/{F.fileId}" with the following parameters

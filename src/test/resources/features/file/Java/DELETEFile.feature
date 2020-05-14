@@ -19,7 +19,7 @@ Feature: File Controller
     * I save "fileId" value to clean file workspace
     * I save response as "F"
 
-  @acceptance
+  @functional
   Scenario: Deletes a file created
 
     When I send a DELETE request to "/file/{F.fileId}"

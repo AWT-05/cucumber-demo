@@ -1,7 +1,7 @@
 @negative
 Feature: File Controller
 
-  @acceptance
+  @functional
   Scenario: Gets a CSharp File without authentication
 
     When I send a PUT request to "/file/info/1" with the following parameters

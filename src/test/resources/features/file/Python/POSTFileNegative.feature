@@ -1,7 +1,7 @@
 @negative @deleteFile
 Feature: File Controller
 
-  @acceptance
+  @functional
   Scenario: Creates a Python File without authentication
 
     When I send a POST request to "file/new/project/1" with the following parameters
